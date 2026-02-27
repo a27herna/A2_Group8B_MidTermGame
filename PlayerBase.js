@@ -5,21 +5,58 @@ class PlayerBase {
     this.size = 40;
     this.speed = speed;
 
-    this.main = new Sprite(x, y, this.size, this.size, DYN);
-    this.main.color = "orange";
-    this.carryon = new Sprite(x, y, this.size, this.size, DYN);
+    this.mainBody = new Sprite(x, y, this.size, this.size, DYN);
+    this.mainBody.color = "orange";
+    this.mainBody.rotationLock = true;
+    this.mainBody.bounciness = 0.05;
+    this.mainBody.friction = 0;
 
-    this.joiner = new WheelJoint(this.main, this.carryon);
-    this.joiner.damping = 1;
-    this.joiner.springiness = 0.1;
+    this.carryon = new Sprite(
+      x,
+      y - this.mainBody.hh,
+      this.size,
+      this.size * 0.2,
+      DYN,
+    );
+    this.carryon.addCollider(this.carryon.hw, -this.carryon.hh, 5, 10);
+    this.carryon.addCollider(-this.carryon.hw, -this.carryon.hh, 5, 10);
+    this.carryon.rotationLock = true;
+
+    this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
+    this.wheeljoiner.damping = 1;
+    this.wheeljoiner.springiness = 0.01;
+    this.wheeljoiner.visible = false;
+
+    this.floorSensor = new Sprite(
+      x,
+      y + this.mainBody.hh,
+      this.size * 0.5,
+      this.size * 0.2,
+    );
+    this.floorSensor.removeColliders();
+    this.floorSensor.visible = true;
+    this.floorSensor.mass = 0;
+
+    this.floorJoiner = new GlueJoint(this.mainBody, this.floorSensor);
+    this.floorJoiner.visible = false;
+  }
+
+  updatePlayer() {
+    this.updateInput();
   }
 
   updateInput() {
-    const dx = (kb.pressing("a") - kb.pressing("d")) ** 0;
+    const dx =
+      (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) -
+      (keyIsDown(LEFT_ARROW) || keyIsDown(65));
 
-    const dy = (kb.pressing("w") - kb.pressing("s")) ** 0;
+    if (this.floorSensor.overlapping(floor)) {
+      if (kb.presses("w") || kb.presses(" ")) {
+        this.mainBody.vel.y = -5;
+      }
+    }
 
-    this.main.vel.x += dx * this.speed;
-    this.main.vel.y += dy * this.speed;
+    this.mainBody.vel.x = dx * this.speed;
+    // this.mainBody.vel.y = dy * this.speed;
   }
 }

@@ -2,18 +2,23 @@ let mainBody;
 let gluey;
 let shoulder;
 
+let mainPlayer;
+let floor;
+
 function setup() {
   createCanvas(400, 400);
 
   // ALWAYS ESTABLISH WORLD GRAVITY
-  world.gravity.y = 1;
+  world.gravity.y = 10;
 
+  mainPlayer = new PlayerBase(width / 2, height / 2, 2);
   const floorThickness = 10;
 
-  let player1 = new Sprite(width / 2, 0, 30);
-  player1.color = "orange";
+  let bally = new Sprite(width / 2, 0, 30);
+  bally.color = "orange";
+  bally.overlaps(mainPlayer.mainBody);
 
-  let floor = new Sprite(
+  floor = new Sprite(
     width / 2,
     height - floorThickness / 2,
     width,
@@ -22,9 +27,9 @@ function setup() {
   );
   4;
 
-  mainBody = new Sprite(width / 2, height / 2, 40, 40);
+  mainBody = new Sprite(width, height / 2, 40, 40);
 
-  shoulder = new Sprite(width / 2, height / 2 - mainBody.hh - 15, 40, 10);
+  shoulder = new Sprite(width, height / 2 - mainBody.hh - 15, 40, 10);
 
   gluey = new WheelJoint(mainBody, shoulder);
   gluey.damping = 1;
@@ -55,8 +60,10 @@ function draw() {
     console.log(shoulder.rotation);
   }
   if (kb.pressing("p")) {
-    player1 = new Sprite(width / 2, 0, 30);
+    bally = new Sprite(width / 2, 0, 30);
   }
 
   // console.log(shoulder.rotation);
+
+  mainPlayer.updateInput();
 }
