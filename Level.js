@@ -4,6 +4,7 @@ let bounce;
 
 function terrainDefinition() {
   floor = new Group();
+
   dirt = new floor.Group();
   dirt.physics = "static";
   dirt.layer = 0;
