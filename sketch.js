@@ -11,14 +11,16 @@ function setup() {
   world.gravity.y = 10;
 
   currentLevel = new Level([]);
-  createCanvas(windowWidth, windowHeight - 200);
+
+  console.log(currentLevel.w + " | " + currentLevel.h);
+  createCanvas(500, 500);
 
   mainPlayer = new PlayerBase(width / 2, height / 2, 2);
-  const floorThickness = 10;
+  // const floorThickness = 10;
 
-  // let bally = new Sprite(width / 2, 0, 30, 30);
-  // bally.color = "orange";
-  // bally.overlaps(mainPlayer.mainBody);
+  let bally = new Sprite(width / 2, 0, 30, 30);
+  bally.color = "orange";
+  bally.overlaps(mainPlayer.mainBody);
 
   // floor = new Sprite(
   //   width / 2,
@@ -51,9 +53,9 @@ function draw() {
   // if (kb.pressing("r")) {
   //   console.log(shoulder.rotation);
   // }
-  // if (kb.pressing("p")) {
-  //   bally = new Sprite(width / 2, 0, 30, 30);
-  // }
+  if (kb.pressing("p")) {
+    bally = new Sprite(width / 2, 0, 30, 30);
+  }
 
   // console.log(shoulder.rotation);
 
