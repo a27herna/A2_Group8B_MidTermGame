@@ -10,17 +10,21 @@ function setup() {
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
 
+  let home = new Postoffice(100, 450);
   currentLevel = new Level([]);
 
   console.log(currentLevel.w + " | " + currentLevel.h);
   createCanvas(500, 500);
 
   mainPlayer = new PlayerBase(width / 2, height / 2, 2);
+  initCamPos();
   // const floorThickness = 10;
 
-  let bally = new Sprite(width / 2, 0, 30, 30);
-  bally.color = "orange";
-  bally.overlaps(mainPlayer.mainBody);
+  // let bally = new Sprite(width / 2, 0, 30, 30);
+  let bally = new Package(width / 2, 0, "SQUARE", 30, 1);
+
+  bally.Sprite.color = "orange";
+  bally.Sprite.overlaps(mainPlayer.mainBody);
 
   // floor = new Sprite(
   //   width / 2,
@@ -60,4 +64,6 @@ function draw() {
   // console.log(shoulder.rotation);
 
   mainPlayer.updateInput();
+
+  updateCamera();
 }
