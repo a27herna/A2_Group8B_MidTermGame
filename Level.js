@@ -1,6 +1,7 @@
 let floor;
 let ground;
 let bounce;
+let gridSize = 50;
 
 function terrainDefinition() {
   floor = new Group();
@@ -19,6 +20,9 @@ function terrainDefinition() {
   platform.height = 20;
   platform.color = "magenta";
   platform.tile = "p";
+
+  initPostoffice();
+  PostofficeObj.tile = "o";
 }
 
 class Level {
@@ -27,7 +31,6 @@ class Level {
 
     */
 
-    let gridSize = 50;
 
     this.bg = json.world?.bg ?? [235, 235, 235];
 
@@ -42,7 +45,7 @@ class Level {
         "",
         "",
         "      p",
-        "  p",
+        "  o p",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -74,8 +77,22 @@ class Level {
       this.tileSet[3],
       this.tileSet[4],
     );
+
+    // Groups that need to be placed at the bottom of the grid
+    // position at level creation
+    PostofficeObj.forEach((element) => {
+      element.y += -element.height / 2 + gridSize / 2;
+    })
+
+    /*
+    SPRITE_GROUP.forEach((element) => {
+      element.y += -element.height / 2 + gridSize / 2;
+    })
+    */
   }
 
+
+  
   drawBackground() {
     background(220);
   }
