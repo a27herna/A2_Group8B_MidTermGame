@@ -1,7 +1,5 @@
 class PlayerBase {
   constructor(x, y, speed) {
-    // What are the basic attributes between players?
-    // x,y,
     let size = 60;
     this.speed = speed;
 
@@ -71,5 +69,7 @@ class PlayerBase {
 
     this.mainBody.vel.x = dx * this.speed;
     // this.mainBody.vel.y = dy * this.speed;
+
+    // if (this.mainBody.overlapping(Postoffice))
   }
 }
