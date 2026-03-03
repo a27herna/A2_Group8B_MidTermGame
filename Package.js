@@ -1,23 +1,24 @@
-class Package {
-  constructor(x, y, type, diameter, weightScale) {
-    let tempSprite;
-    let _weightScale = weightScale;
-    _weightScale ??= 1.3;
+// class Package {
+//   constructor(x, y, type, diameter, weightScale) {
+//     let tempSprite;
+//     let _weightScale = weightScale;
+//     _weightScale ??= 1.3;
 
-    if (type === "SQUARE" || type === "square") {
-      tempSprite = new Sprite(x, y, diameter, diameter);
-      tempSprite.gravityScale *= _weightScale;
-    } else if (type === "CIRCLE" || type === "circle") {
-      tempSprite = new Sprite(x, y, diameter);
-      tempSprite.gravityScale *= _weightScale;
-    }
+//     if (type === "SQUARE" || type === "square") {
+//       tempSprite = new Sprite(x, y, diameter, diameter);
+//       tempSprite.gravityScale *= _weightScale;
+//     } else if (type === "CIRCLE" || type === "circle") {
+//       tempSprite = new Sprite(x, y, diameter);
+//       tempSprite.gravityScale *= _weightScale;
+//     }
 
-    this.Sprite = tempSprite;
-    // this.img = null;
-  }
-}
+//     this.Sprite = tempSprite;
+//     // this.img = null;
+//   }
+// }
 
 let PackageObj;
+let currPackage;
 let BasicBox;
 let BasicRound;
 
@@ -32,7 +33,11 @@ function initPackageObj() {
   BasicBox.height = 30;
 }
 
-function createPackage(type) {
+function createPackageObj(type) {
+let tempPackage;
+  if (type == "basic") {
+    tempPackage = new BasicBox.Sprite();
+  }
 
-  
+  return tempPackage;
 }

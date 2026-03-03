@@ -1,34 +1,34 @@
-class Postoffice {
-  constructor(x, y) {
-    let tempSprite;
+// class Postoffice {
+//   constructor(x, y) {
+//     let tempSprite;
 
-    let height = 200;
+//     let height = 200;
 
-    tempSprite = new Sprite(x, y - height / 2, height / 1.5, height, "NONE");
-    tempSprite.layer = 0;
+//     tempSprite = new Sprite(x, y - height / 2, height / 1.5, height, "NONE");
+//     tempSprite.layer = 0;
 
-    // let defaultDraw = tempSprite._draw;
+//     // let defaultDraw = tempSprite._draw;
 
-    // tempSprite.draw = function () {
-    //   // add custom code here
-    //   //   rect(-10, -10, 20, 20);
+//     // tempSprite.draw = function () {
+//     //   // add custom code here
+//     //   //   rect(-10, -10, 20, 20);
 
-    //   defaultDraw();
-    // };
+//     //   defaultDraw();
+//     // };
 
-    this.Sprite = tempSprite;
-  }
+//     this.Sprite = tempSprite;
+//   }
 
-  releasePackage() {
-    new Package(
-      this.Sprite.x,
-      this.Sprite.y - this.Sprite.height,
-      "SQUARE",
-      30,
-      1,
-    );
-  }
-}
+//   releasePackage() {
+//     new Package(
+//       this.Sprite.x,
+//       this.Sprite.y - this.Sprite.height,
+//       "SQUARE",
+//       30,
+//       1,
+//     );
+//   }
+// }
 
 let PostofficeObj;
 
@@ -44,7 +44,7 @@ function initPostoffice() {
   // PostofficeObj.y = -gridSize / 2;
   PostofficeObj.layer = 0;
 
-  PostofficeObj.packageList = ["blank","basic"];
+  PostofficeObj.packageList = ["basic"];
   PostofficeObj.packageListLength = PostofficeObj.packageList.length;
   PostofficeObj.currPackageIndex = -1;
   // PostofficeObj.debug = true;
@@ -62,12 +62,21 @@ function initPostoffice() {
 
 function summonPackage() {
 
+
   if (kb.presses('e')) {
     this.currPackageIndex++;
     this.currPackageIndex = constrain(this.currPackageIndex, 0, this.packageListLength - 1);
 
+    // console.log(this.packageList);
     console.log(this.currPackageIndex);
     console.log(this.packageList[this.currPackageIndex]);
+
+
+    currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
+    
+    // console.log(this.height);
+    currPackage.pos = this.pos;
+    currPackage.y -=  this.height / 4;
   }
 }
 

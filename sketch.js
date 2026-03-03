@@ -21,10 +21,10 @@ function setup() {
   // const floorThickness = 10;
 
   // let bally = new Sprite(width / 2, 0, 30, 30);
-  let bally = new Package(width / 2, 0, "SQUARE", 30, 1);
+  // let bally = new Package(width / 2, 0, "SQUARE", 30, 1);
 
-  bally.Sprite.color = "orange";
-  bally.Sprite.overlaps(mainPlayer.mainBody);
+  // bally.Sprite.color = "orange";
+  // bally.Sprite.overlaps(mainPlayer.mainBody);
 
   // floor = new Sprite(
   //   width / 2,
