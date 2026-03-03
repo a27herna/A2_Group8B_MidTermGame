@@ -60,6 +60,7 @@ function initPostoffice() {
   initPackageObj();
 }
 
+let currPackage;
 function summonPackage() {
 
 

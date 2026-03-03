@@ -23,6 +23,9 @@ function terrainDefinition() {
 
   initPostoffice();
   PostofficeObj.tile = "o";
+
+  initRecipientObj();
+  RecipientObj.tile = "r";
 }
 
 class Level {
@@ -45,7 +48,7 @@ class Level {
         "",
         "",
         "      p",
-        "  o p",
+        "  o p              r",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -92,7 +95,7 @@ class Level {
   }
 
 
-  
+
   drawBackground() {
     background(220);
   }

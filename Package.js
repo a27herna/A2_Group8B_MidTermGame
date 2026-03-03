@@ -18,7 +18,6 @@
 // }
 
 let PackageObj;
-let currPackage;
 let BasicBox;
 let BasicRound;
 
