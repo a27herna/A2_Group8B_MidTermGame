@@ -55,7 +55,7 @@ class Level {
         "",
         "",
         "      p",
-        " So p              r",
+        "  So p             r",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -91,15 +91,28 @@ class Level {
     PostofficeObj.forEach((element) => {
       element.y += -element.height / 2 + gridSize / 2;
     })
+    RecipientObj.forEach((element) => {
+      element.y += -element.height / 2 + gridSize / 2;
+    })
 
     /*
     SPRITE_GROUP.forEach((element) => {
       element.y += -element.height / 2 + gridSize / 2;
     })
     */
+
+    this.levelBegin();
   }
 
-  
+  levelBegin() {
+    mainPlayer.mainBody.pos.x = playerStart[0].pos.x;
+    mainPlayer.mainBody.pos.y = playerStart[0].pos.y;
+
+    // This prevents unintended springback
+    mainPlayer.carryon.pos.x = playerStart[0].pos.x;
+    mainPlayer.carryon.pos.y = playerStart[0].pos.y;
+
+  }
 
   drawBackground() {
     background(220);
