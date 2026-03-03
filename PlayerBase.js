@@ -36,7 +36,7 @@ class PlayerBase {
     this.floorSensor = new Sprite(
       x,
       y + this.mainBody.hh,
-      size * 0.5,
+      size,
       size * 0.5,
     );
     this.floorSensor.removeColliders();
