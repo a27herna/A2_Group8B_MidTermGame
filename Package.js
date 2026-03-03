@@ -26,11 +26,13 @@ function initPackageObj() {
   PackageObj = new Group();
   PackageObj.physics = "DYN";
   PackageObj.gravityScale = 1.3;
+  PackageObj.overlaps(mainPlayer.mainBody);
   
   BasicBox = new PackageObj.Group()
   BasicBox.shape = "box";
   BasicBox.width = 30;
   BasicBox.height = 30;
+  BasicBox.packageType = "basic";
 }
 
 function createPackageObj(type) {

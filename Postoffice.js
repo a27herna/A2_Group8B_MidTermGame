@@ -34,7 +34,7 @@ let PostofficeObj;
 
 function initPostoffice() {
   let objHeight = 200;
-  let objWidth = objHeight / 1.5
+  let objWidth = objHeight / 1.5;
 
   PostofficeObj = new Group();
   PostofficeObj.width = objWidth;
