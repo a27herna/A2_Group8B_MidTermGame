@@ -1,6 +1,8 @@
 class PlayerBase {
   constructor(x, y, speed) {
     let size = 60;
+    this.jumpStrength = 7;
+
     this.speed = speed;
 
     let carryonLipHeight = 20;
@@ -63,7 +65,7 @@ class PlayerBase {
 
     if (this.floorSensor.overlapping(floor)) {
       if (kb.pressing("w") || kb.pressing("space")) {
-        this.mainBody.vel.y = -10;
+        this.mainBody.vel.y = -this.jumpStrength;
       }
     }
 
