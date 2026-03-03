@@ -1,16 +1,24 @@
 let floor;
-let dirt;
+let ground;
 let bounce;
 
 function terrainDefinition() {
   floor = new Group();
+  floor.layer = 0;
 
-  dirt = new floor.Group();
-  dirt.physics = "static";
-  dirt.layer = 0;
-  dirt.width = 50;
-  dirt.color = "brown";
-  dirt.tile = "g";
+  ground = new floor.Group();
+  ground.physics = "static";
+  ground.layer = 0;
+  ground.width = 50;
+  ground.color = "brown";
+  ground.tile = "g";
+
+  platform = new floor.Group();
+  platform.physics = "static";
+  platform.width = 50;
+  platform.height = 20;
+  platform.color = "magenta";
+  platform.tile = "p";
 }
 
 class Level {
@@ -19,17 +27,42 @@ class Level {
 
     */
 
-    this.w = json.world?.w ?? 2400;
-    this.h = json.world?.h ?? 1600;
+    let gridSize = 50;
+
     this.bg = json.world?.bg ?? [235, 235, 235];
 
     this.tileSet = json.world?.tileSet ?? [
-      ["", "", "", "", "", "", "", "", "", "gggggggggggggggggggg"],
-      10,
-      20,
-      50,
-      50,
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "      p",
+        "  p",
+        "gggggggggggggggggggg",
+      ],
+      gridSize / 2,
+      gridSize / 2,
+      gridSize,
+      gridSize,
     ];
+
+    let maxStringLength = 0;
+    this.tileSet[0].forEach((element) => {
+      if (element.length > maxStringLength) {
+        maxStringLength = element.length;
+      }
+    });
+
+    this.tilew = maxStringLength;
+    this.tileh = this.tileSet[0].length;
+
+    this.w = gridSize * this.tilew;
+    this.h = gridSize * this.tileh;
 
     this.obstacles = json.obstacles ?? [];
 
