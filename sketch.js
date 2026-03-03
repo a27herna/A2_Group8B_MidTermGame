@@ -7,16 +7,16 @@ let mainPlayer;
 let currentLevel;
 
 function setup() {
+  createCanvas(500, 500);
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
 
-  let home = new Postoffice(100, 450);
+  mainPlayer = new PlayerBase(width / 2, height / 2, 2);
+  // let home = new Postoffice(100, 450);
   currentLevel = new Level([]);
 
   console.log(currentLevel.w + " | " + currentLevel.h);
-  createCanvas(500, 500);
 
-  mainPlayer = new PlayerBase(width / 2, height / 2, 2);
   initCamPos();
   // const floorThickness = 10;
 
