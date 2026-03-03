@@ -3,6 +3,8 @@ let mainBody;
 
 let currentLevel;
 
+let packageBrokenCount = 0;
+
 function setup() {
   /*
   !!Init in this order!!
