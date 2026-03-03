@@ -1,8 +1,5 @@
-let mainBody;
-let gluey;
-let shoulder;
-
 let mainPlayer;
+let mainBody;
 
 let currentLevel;
 
@@ -26,21 +23,6 @@ function setup() {
   console.log(currentLevel.w + " | " + currentLevel.h);
 
   initCamPos();
-  // const floorThickness = 10;
-
-  // let bally = new Sprite(width / 2, 0, 30, 30);
-  // let bally = new Package(width / 2, 0, "SQUARE", 30, 1);
-
-  // bally.Sprite.color = "orange";
-  // bally.Sprite.overlaps(mainPlayer.mainBody);
-
-  // floor = new Sprite(
-  //   width / 2,
-  //   height - floorThickness / 2,
-  //   width,
-  //   floorThickness,
-  //   KIN,
-  // );
 }
 
 function draw() {
@@ -65,13 +47,7 @@ function draw() {
   // if (kb.pressing("r")) {
   //   console.log(shoulder.rotation);
   // }
-  if (kb.pressing("p")) {
-    bally = new Sprite(width / 2, 0, 30, 30);
-  }
-
-  // console.log(shoulder.rotation);
 
   mainPlayer.updateInput();
-
   updateCamera();
 }

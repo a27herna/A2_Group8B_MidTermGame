@@ -23,10 +23,10 @@ function initRecipientObj() {
 function acceptPackage() {
     if (kb.presses('e')) {
         if (currPackage != null) {
-            console.log("YAY");
+            // console.log("YAY");
             if (this.overlapping(currPackage) && currPackage.packageType == this.targetPackage) {
     
-                console.log("YIPPEEE!!!!");
+                // console.log("YIPPEEE!!!!");
                 this.satisfied = true;
                 this.color = "green";
     
