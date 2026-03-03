@@ -1,6 +1,7 @@
 let floor;
 let ground;
 let bounce;
+let playerStart;
 let gridSize = 50;
 
 function terrainDefinition() {
@@ -26,6 +27,12 @@ function terrainDefinition() {
 
   initRecipientObj();
   RecipientObj.tile = "r";
+
+  playerStart = new Group();
+  playerStart.physics = "NONE";
+  playerStart.visible = false;
+  playerStart.debug = true;
+  playerStart.tile = "S";
 }
 
 class Level {
@@ -48,7 +55,7 @@ class Level {
         "",
         "",
         "      p",
-        "  o p              r",
+        " So p              r",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -69,8 +76,6 @@ class Level {
 
     this.w = gridSize * this.tilew;
     this.h = gridSize * this.tileh;
-
-    this.obstacles = json.obstacles ?? [];
 
     terrainDefinition();
     new Tiles(
@@ -94,7 +99,7 @@ class Level {
     */
   }
 
-
+  
 
   drawBackground() {
     background(220);
