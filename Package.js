@@ -1,16 +1,18 @@
 class Package {
   constructor(x, y, type, diameter, weightScale) {
     let tempSprite;
+    let _weightScale = weightScale;
+    _weightScale ??= 1.3;
 
     if (type === "SQUARE" || type === "square") {
       tempSprite = new Sprite(x, y, diameter, diameter);
-      tempSprite.mass *= weightScale;
+      tempSprite.gravityScale *= _weightScale;
     } else if (type === "CIRCLE" || type === "circle") {
       tempSprite = new Sprite(x, y, diameter);
-      tempSprite.mass *= weightScale;
+      tempSprite.gravityScale *= _weightScale;
     }
 
     this.Sprite = tempSprite;
-    this.img = null;
+    // this.img = null;
   }
 }
