@@ -7,6 +7,14 @@ let mainPlayer;
 let currentLevel;
 
 function setup() {
+  /*
+  !!Init in this order!!
+  1. Canvas
+  2. Player
+  3. Level
+  4. Camera
+  */
+
   createCanvas(500, 500);
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
