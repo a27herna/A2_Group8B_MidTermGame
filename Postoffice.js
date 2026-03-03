@@ -43,14 +43,19 @@ function initPostoffice() {
   // PostofficeObj.offset = {x: 0, y: (-objHeight / 2) + (gridSize / 2) + 2};
   // PostofficeObj.y = -gridSize / 2;
   PostofficeObj.layer = 0;
-  // PostofficeObj.debug = true;
-  PostofficeObj.releasePackage = new function() {
-    if (kb.presses('e')) {
-      console.log("special");
-    } 
-  }
 
-  PostofficeObj.overlapping(mainPlayer.mainBody, releasePackage);
+  PostofficeObj.packageList = ["blank","basic"];
+  PostofficeObj.packageListLength = PostofficeObj.packageList.length;
+  PostofficeObj.currPackageIndex = -1;
+  // PostofficeObj.debug = true;
+
+  // PostofficeObj.releasePackage = new function() {
+  //   if (kb.presses('e')) {
+  //     console.log("special");
+  //   } 
+  // }
+
+  PostofficeObj.overlapping(mainPlayer.mainBody, summonPackage);
 
   initPackageObj();
 }
@@ -58,9 +63,11 @@ function initPostoffice() {
 function summonPackage() {
 
   if (kb.presses('e')) {
-    console.log(this.pos);
+    this.currPackageIndex++;
+    this.currPackageIndex = constrain(this.currPackageIndex, 0, this.packageListLength - 1);
 
-
+    console.log(this.currPackageIndex);
+    console.log(this.packageList[this.currPackageIndex]);
   }
 }
 

@@ -16,3 +16,23 @@ class Package {
     // this.img = null;
   }
 }
+
+let PackageObj;
+let BasicBox;
+let BasicRound;
+
+function initPackageObj() {
+  PackageObj = new Group();
+  PackageObj.physics = "DYN";
+  PackageObj.gravityScale = 1.3;
+  
+  BasicBox = new PackageObj.Group()
+  BasicBox.shape = "box";
+  BasicBox.width = 30;
+  BasicBox.height = 30;
+}
+
+function createPackage(type) {
+
+  
+}
