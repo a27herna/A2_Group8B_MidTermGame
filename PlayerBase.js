@@ -34,7 +34,7 @@ class PlayerBase {
 
     this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
     this.wheeljoiner.damping = 1;
-    this.wheeljoiner.springiness = 0.00000000001;
+    this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
     this.wheeljoiner.visible = false;
 
     this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.25);
