@@ -39,12 +39,22 @@ function setup() {
 function draw() {
   background(220);
 
+  currentLevel.updateTerrain();
+
   if (allowPlayerInput) {
     mainPlayer.updateInput();
     updateCamera();
   }
 
-  // if (kb.presses("p")) {
-  //   console.log(mainPlayer.mainBody.pos);
-  // }
+  if (kb.presses("1")) {
+    console.log(mainPlayer.mainBody.mass);
+  }
+  if (kb.presses("2")) {
+    console.log(currPackage.mass);
+  }
+  if (kb.presses("3")) {
+    console.log(oopsPackage.pos.x);
+    console.log(oopsPackage.pos.y);
+    console.log(oopsPackage.pos.y / gridSize);
+  }
 }
