@@ -1,26 +1,31 @@
-let floor;
+let floorTile;
 let ground;
 let bounce;
 let playerStart;
 let gridSize = 50;
 
 function terrainDefinition() {
-  floor = new Group();
-  floor.layer = 0;
+  floorTile = new Group();
+  floorTile.layer = 0;
 
-  ground = new floor.Group();
+  ground = new floorTile.Group();
   ground.physics = "static";
   ground.layer = 0;
   ground.width = 50;
   ground.color = "brown";
   ground.tile = "g";
 
-  platform = new floor.Group();
+  platform = new floorTile.Group();
   platform.physics = "static";
   platform.width = 50;
   platform.height = 20;
   platform.color = "magenta";
   platform.tile = "p";
+
+  oneWayPlatform = new platform.Group();
+  oneWayPlatform.physics = "NONE";
+  oneWayPlatform.color = "teal";
+  oneWayPlatform.tile = "n";
 
   initPostoffice();
   PostofficeObj.tile = "o";
@@ -49,12 +54,12 @@ class Level {
         "",
         "",
         "",
-        "",
-        "",
-        "",
-        "",
-        "      p",
-        "  So p           r",
+        "                    ",
+        "                    ",
+        "                    ",
+        "            n       ",
+        "      p             ",
+        "  So p           r  ",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -100,6 +105,18 @@ class Level {
     })
     */
 
+    // Groups that need to be placed at the top of the grid
+    // position at level creation
+    platform.forEach((element) => {
+      element.y -= -element.height / 2 + gridSize / 2;
+    });
+
+    /*
+    SPRITE_GROUP.forEach((element) => {
+      element.y -= -element.height / 2 + gridSize / 2;
+    })
+    */
+
     this.levelBegin();
   }
 
@@ -113,8 +130,6 @@ class Level {
   }
 
   async cameraIntro() {
-    // initCamPos();
-
     console.log(camera.x);
     console.log(camera.y);
 
@@ -123,40 +138,39 @@ class Level {
       console.log(element.x);
       console.log(element.y);
     }
-    // await setTimeout(returnToPlayer, )
-    // RecipientObj.forEach(async (element) => {
-    //   await camera.moveTo(element.x, element.y, 1);
-    // });
 
     await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 5);
     allowPlayerInput = true;
   }
 
-  async cameraIntroHandler() {}
-
-  drawBackground() {
-    background(220);
+  updateTerrain() {
+    oneWayPlatformfor;
   }
 
-  drawWorld() {
-    noStroke();
-    fill(this.bg[0], this.bg[1], this.bg[2]);
-    rect(0, 0, this.w, this.h);
+  // !!!!!REMOVE LATER!!!!!
+  // drawBackground() {
+  //   background(220);
+  // }
 
-    stroke(245);
-    for (let x = 0; x <= this.w; x += this.gridStep) line(x, 0, x, this.h);
-    for (let y = 0; y <= this.h; y += this.gridStep) line(0, y, this.w, y);
+  // drawWorld() {
+  //   noStroke();
+  //   fill(this.bg[0], this.bg[1], this.bg[2]);
+  //   rect(0, 0, this.w, this.h);
 
-    noStroke();
-    fill(170, 190, 210);
-    for (const o of this.obstacles) rect(o.x, o.y, o.w, o.h, o.r ?? 0);
+  //   stroke(245);
+  //   for (let x = 0; x <= this.w; x += this.gridStep) line(x, 0, x, this.h);
+  //   for (let y = 0; y <= this.h; y += this.gridStep) line(0, y, this.w, y);
 
-    stroke(133, 199, 147);
-    noFill();
-    for (const p of this.pois) {
-      if (p.d) {
-        circle(p.x, p.y, p.d);
-      } else rect(p.x, p.y, p.w, p.h, p.r ?? 0);
-    }
-  }
+  //   noStroke();
+  //   fill(170, 190, 210);
+  //   for (const o of this.obstacles) rect(o.x, o.y, o.w, o.h, o.r ?? 0);
+
+  //   stroke(133, 199, 147);
+  //   noFill();
+  //   for (const p of this.pois) {
+  //     if (p.d) {
+  //       circle(p.x, p.y, p.d);
+  //     } else rect(p.x, p.y, p.w, p.h, p.r ?? 0);
+  //   }
+  // }
 }

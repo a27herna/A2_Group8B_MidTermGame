@@ -1,7 +1,7 @@
 class PlayerBase {
   constructor(x, y, speed) {
     let size = 60;
-    this.jumpStrength = 7;
+    this.jumpStrength = 10;
 
     this.speed = speed;
 
@@ -33,12 +33,7 @@ class PlayerBase {
     this.wheeljoiner.springiness = 0.00000000001;
     this.wheeljoiner.visible = false;
 
-    this.floorSensor = new Sprite(
-      x,
-      y + this.mainBody.hh,
-      size,
-      size * 0.5,
-    );
+    this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.5);
     this.floorSensor.removeColliders();
     this.floorSensor.visible = true;
     this.floorSensor.mass = 0;
@@ -63,15 +58,32 @@ class PlayerBase {
       (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) -
       (keyIsDown(LEFT_ARROW) || keyIsDown(65));
 
-    if (this.floorSensor.overlapping(floor)) {
-      if (kb.pressing("w") || kb.pressing("space")) {
+    if (this.floorSensor.overlapping(floorTile)) {
+      if (kb.presses("w") || kb.presses("space")) {
         this.mainBody.vel.y = -this.jumpStrength;
       }
     }
 
     this.mainBody.vel.x = dx * this.speed;
-    // this.mainBody.vel.y = dy * this.speed;
 
-    // if (this.mainBody.overlapping(Postoffice))
+    // if (kb.pressing("q")) {
+    //   // gluey.speed = 1;
+    //   // shoulder.rotate(-30);
+    //   // shoulder.rotation = -30;
+    //   shoulder.rotateTowards(-30);
+    //   console.log("hello");
+    // } else if (kb.pressing("e")) {
+    //   shoulder.rotateTowards(30);
+    //   // shoulder.rotation = 30;
+    // } else {
+    //   shoulder.rotateTowards(0, 0.5);
+    //   // shoulder.rotation = 0;
+    //   // shoulder.rotate(0);
+    //   // gluey.speed = 0;
+    // }
+
+    // if (kb.pressing("r")) {
+    //   console.log(shoulder.rotation);
+    // }
   }
 }
