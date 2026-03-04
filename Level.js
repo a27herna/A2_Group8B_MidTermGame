@@ -18,7 +18,7 @@ function terrainDefinition() {
   platform = new floorTile.Group();
   platform.physics = "static";
   platform.width = gridSize;
-  platform.height = (gridSize * 2) / 5;
+  platform.height = (gridSize * 1) / 5;
   platform.color = "magenta";
   platform.tile = "p";
 
@@ -161,7 +161,7 @@ class Level {
 
   updateTerrain() {
     oneWayPlatform.forEach((element) => {
-      if (element.y > mainPlayer.floorSensor.y + mainPlayer.floorSensor.hh) {
+      if (element.y > mainPlayer.floorSensor.y) {
         element.physics = "static";
       } else {
         element.physics = "NONE";
