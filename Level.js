@@ -11,14 +11,14 @@ function terrainDefinition() {
   ground = new floorTile.Group();
   ground.physics = "static";
   ground.layer = 0;
-  ground.width = 50;
+  ground.width = gridSize;
   ground.color = "brown";
   ground.tile = "g";
 
   platform = new floorTile.Group();
   platform.physics = "static";
-  platform.width = 50;
-  platform.height = 20;
+  platform.width = gridSize;
+  platform.height = (gridSize * 2) / 5;
   platform.color = "magenta";
   platform.tile = "p";
 
@@ -27,6 +27,16 @@ function terrainDefinition() {
   oneWayPlatform.color = "teal";
   oneWayPlatform.tile = "n";
 
+  VisualForegroundTile = new Group();
+  VisualForegroundTile.physics = "NONE";
+  VisualForegroundTile.width = gridSize;
+  VisualForegroundTile.height = gridSize;
+  VisualForegroundTile.stroke = color(0, 0, 255, 25);
+  VisualForegroundTile.opacity = 0.5;
+  VisualForegroundTile.layer = 999;
+  VisualForegroundTile.fill = "blue";
+  VisualForegroundTile.tile = "w";
+
   initPostoffice();
   PostofficeObj.tile = "o";
 
@@ -34,8 +44,10 @@ function terrainDefinition() {
   RecipientObj.tile = "r";
 
   playerStart = new Group();
+  playerStart.width = 5;
+  playerStart.height = 5;
   playerStart.physics = "NONE";
-  playerStart.visible = false;
+  playerStart.visible = true;
   playerStart.debug = true;
   playerStart.tile = "S";
 }
@@ -57,7 +69,7 @@ class Level {
         "                    ",
         "                    ",
         "                    ",
-        "            n       ",
+        "wwwwwwww    n       ",
         "      p             ",
         "  So p           r  ",
         "gggggggggggggggggggg",
@@ -89,6 +101,10 @@ class Level {
       this.tileSet[3],
       this.tileSet[4],
     );
+
+    //
+    // vvvv TILE POSITION MODIFICATIONS vvvv
+    //
 
     // Groups that need to be placed at the bottom of the grid
     // position at level creation
@@ -126,7 +142,7 @@ class Level {
 
     // This prevents unintended springback
     mainPlayer.carryon.pos.x = playerStart[0].pos.x;
-    mainPlayer.carryon.pos.y = playerStart[0].pos.y;
+    mainPlayer.carryon.pos.y = playerStart[0].pos.y - mainPlayer.mainBody.hh;
   }
 
   async cameraIntro() {
@@ -144,7 +160,13 @@ class Level {
   }
 
   updateTerrain() {
-    oneWayPlatformfor;
+    oneWayPlatform.forEach((element) => {
+      if (element.y > mainPlayer.floorSensor.y + mainPlayer.floorSensor.hh) {
+        element.physics = "static";
+      } else {
+        element.physics = "NONE";
+      }
+    });
   }
 
   // !!!!!REMOVE LATER!!!!!
