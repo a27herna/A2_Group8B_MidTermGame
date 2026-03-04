@@ -71,7 +71,7 @@ function createPackageObj(type) {
 let oopsPackage;
 function destroyPackage() {
   oopsPackage = new BrokenPackageObj.Sprite(this.pos.x, this.pos.y);
-  // oopsPackage.y = oopsPackage.y / gridSize
+  oopsPackage.y = ((int(oopsPackage.y / gridSize) + 1) * gridSize) - oopsPackage.hh;
   // console.log(oopsPackage.pos);
   packageBrokenCount++;
   // PackageObj.deleteAll();
