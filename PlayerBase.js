@@ -12,8 +12,11 @@ class PlayerBase {
     this.mainBody.rotationLock = true;
     this.mainBody.bounciness = 0;
     this.mainBody.friction = 0;
+    this.mainBody.layer = 1;
+    // this.mainBody.mass = 10;
 
     this.carryon = new Sprite(x, y - this.mainBody.hh, size, size * 0.2, DYN);
+    this.carryon.layer = 1;
     this.carryon.addCollider(
       this.carryon.hw - 3,
       -carryonLipHeight / 2,
@@ -27,13 +30,14 @@ class PlayerBase {
       carryonLipHeight,
     );
     this.carryon.rotationLock = true;
+    // this.carryon.mass = 10;
 
     this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
     this.wheeljoiner.damping = 1;
     this.wheeljoiner.springiness = 0.00000000001;
     this.wheeljoiner.visible = false;
 
-    this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.5);
+    this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.25);
     this.floorSensor.removeColliders();
     this.floorSensor.visible = true;
     this.floorSensor.mass = 0;
