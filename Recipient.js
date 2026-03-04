@@ -24,6 +24,7 @@ function acceptPackage() {
     if (kb.presses('e')) {
         if (currPackage != null) {
             // console.log("YAY");
+            mainPlayer.mainBody.sleeping = false;
             if (this.overlapping(currPackage) && currPackage.packageType == this.targetPackage) {
     
                 // console.log("YIPPEEE!!!!");
