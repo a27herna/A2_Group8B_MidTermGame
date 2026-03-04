@@ -54,7 +54,7 @@ class Level {
         "",
         "",
         "      p",
-        "  So p             r",
+        "  So p           r",
         "gggggggggggggggggggg",
       ],
       gridSize / 2,
@@ -112,12 +112,27 @@ class Level {
     mainPlayer.carryon.pos.y = playerStart[0].pos.y;
   }
 
-  cameraIntro() {
-    initCamPos();
-    RecipientObj.forEach(async (element) => {
-      await camera.moveTo(element.x, element.y, 1);
-    });
+  async cameraIntro() {
+    // initCamPos();
+
+    console.log(camera.x);
+    console.log(camera.y);
+
+    for (let element of RecipientObj) {
+      await constrictCamMove(element.x, element.y, 2);
+      console.log(element.x);
+      console.log(element.y);
+    }
+    // await setTimeout(returnToPlayer, )
+    // RecipientObj.forEach(async (element) => {
+    //   await camera.moveTo(element.x, element.y, 1);
+    // });
+
+    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 5);
+    allowPlayerInput = true;
   }
+
+  async cameraIntroHandler() {}
 
   drawBackground() {
     background(220);

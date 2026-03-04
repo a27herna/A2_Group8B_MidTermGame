@@ -26,9 +26,8 @@ function setup() {
 
   console.log(currentLevel.w + " | " + currentLevel.h);
 
-  // initCamPos();
-
-  currentLevel.cameraIntro();
+  initCamPos();
+  setTimeout(currentLevel.cameraIntro, 1500);
 }
 
 function draw() {
@@ -56,5 +55,9 @@ function draw() {
   if (allowPlayerInput) {
     mainPlayer.updateInput();
     updateCamera();
+  }
+
+  if (kb.presses("p")) {
+    console.log(mainPlayer.mainBody.pos);
   }
 }
