@@ -5,6 +5,8 @@ let currentLevel;
 
 let packageBrokenCount = 0;
 
+let allowPlayerInput = false;
+
 function setup() {
   /*
   !!Init in this order!!
@@ -24,7 +26,9 @@ function setup() {
 
   console.log(currentLevel.w + " | " + currentLevel.h);
 
-  initCamPos();
+  // initCamPos();
+
+  currentLevel.cameraIntro();
 }
 
 function draw() {
@@ -49,7 +53,8 @@ function draw() {
   // if (kb.pressing("r")) {
   //   console.log(shoulder.rotation);
   // }
-
-  mainPlayer.updateInput();
-  updateCamera();
+  if (allowPlayerInput) {
+    mainPlayer.updateInput();
+    updateCamera();
+  }
 }

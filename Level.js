@@ -41,7 +41,6 @@ class Level {
 
     */
 
-
     this.bg = json.world?.bg ?? [235, 235, 235];
 
     this.tileSet = json.world?.tileSet ?? [
@@ -78,7 +77,7 @@ class Level {
     this.h = gridSize * this.tileh;
 
     terrainDefinition();
-    new Tiles(
+    this.TileMap = new Tiles(
       this.tileSet[0],
       this.tileSet[1],
       this.tileSet[2],
@@ -90,10 +89,10 @@ class Level {
     // position at level creation
     PostofficeObj.forEach((element) => {
       element.y += -element.height / 2 + gridSize / 2;
-    })
+    });
     RecipientObj.forEach((element) => {
       element.y += -element.height / 2 + gridSize / 2;
-    })
+    });
 
     /*
     SPRITE_GROUP.forEach((element) => {
@@ -111,7 +110,13 @@ class Level {
     // This prevents unintended springback
     mainPlayer.carryon.pos.x = playerStart[0].pos.x;
     mainPlayer.carryon.pos.y = playerStart[0].pos.y;
+  }
 
+  cameraIntro() {
+    initCamPos();
+    RecipientObj.forEach(async (element) => {
+      await camera.moveTo(element.x, element.y, 1);
+    });
   }
 
   drawBackground() {
