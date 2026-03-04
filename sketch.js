@@ -7,6 +7,8 @@ let packageBrokenCount = 0;
 
 let allowPlayerInput = false;
 
+let devCamSkip = true;
+
 function setup() {
   /*
   !!Init in this order!!
@@ -21,43 +23,28 @@ function setup() {
   world.gravity.y = 10;
 
   mainPlayer = new PlayerBase(width / 2, height / 2, 2);
-  // let home = new Postoffice(100, 450);
   currentLevel = new Level([]);
 
   console.log(currentLevel.w + " | " + currentLevel.h);
 
   initCamPos();
-  setTimeout(currentLevel.cameraIntro, 1500);
+
+  if (devCamSkip) {
+    allowPlayerInput = true;
+  } else {
+    setTimeout(currentLevel.cameraIntro, 1500);
+  }
 }
 
 function draw() {
   background(220);
 
-  // if (kb.pressing("q")) {
-  //   // gluey.speed = 1;
-  //   // shoulder.rotate(-30);
-  //   // shoulder.rotation = -30;
-  //   shoulder.rotateTowards(-30);
-  //   console.log("hello");
-  // } else if (kb.pressing("e")) {
-  //   shoulder.rotateTowards(30);
-  //   // shoulder.rotation = 30;
-  // } else {
-  //   shoulder.rotateTowards(0, 0.5);
-  //   // shoulder.rotation = 0;
-  //   // shoulder.rotate(0);
-  //   // gluey.speed = 0;
-  // }
-
-  // if (kb.pressing("r")) {
-  //   console.log(shoulder.rotation);
-  // }
   if (allowPlayerInput) {
     mainPlayer.updateInput();
     updateCamera();
   }
 
-  if (kb.presses("p")) {
-    console.log(mainPlayer.mainBody.pos);
-  }
+  // if (kb.presses("p")) {
+  //   console.log(mainPlayer.mainBody.pos);
+  // }
 }
