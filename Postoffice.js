@@ -66,6 +66,8 @@ function summonPackage() {
 
     currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
     
+
+    packageBornTime = world.realTime;
     // console.log(this.height);
     currPackage.pos = this.pos;
     currPackage.y -=  this.height / 4;

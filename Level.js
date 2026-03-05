@@ -1,7 +1,9 @@
 let floorTile;
 let ground;
 let bounce;
+let lilypad;
 let playerStart;
+
 let gridSize = 50;
 
 function terrainDefinition() {
@@ -12,7 +14,7 @@ function terrainDefinition() {
   ground.physics = "static";
   ground.layer = 0;
   ground.width = gridSize;
-  ground.color = "brown";
+  ground.color = "SaddleBrown";
   ground.tile = "g";
 
   platform = new floorTile.Group();
@@ -21,6 +23,10 @@ function terrainDefinition() {
   platform.height = (gridSize * 1) / 5;
   platform.color = "magenta";
   platform.tile = "p";
+
+  lilypad = new platform.Group();
+  lilypad.color = "SeaGreen";
+  lilypad.tile = "_";
 
   oneWayPlatform = new platform.Group();
   oneWayPlatform.physics = "NONE";
@@ -66,13 +72,37 @@ class Level {
         "",
         "",
         "",
-        "                    ",
-        "                    ",
-        "                    ",
-        "wwwwwwww    n       ",
-        "      p             ",
-        "  So p           r  ",
-        "gggggggggggggggggggg",
+        "",
+        "",
+        "",
+        "                                                ",
+        "                                                ",
+        "                                         r      ",
+        "                                  nnnnnnnnnnnnn ",
+        "                                                ",
+        "                                     nnn        ",
+        "                                                ",
+        "                                         nnn    ",
+        "                                                ",
+        "                                     nnn        ",
+        "                                                ",
+        "                                         nnn    ",
+        "                                     nn         ",
+        "                                          nn    ",
+        "                                     nn         ",
+        "                                          nn    ",
+        "                                     nn         ",
+        "                                          nn    ",
+        "                                     nn         ",
+        "                                          nn    ",
+        "                                     nn         ",
+        "                                          nn    ",
+        "                                     nn         ",
+        "          gg                              nn    ",
+        "  o  S   ggg        _ _  _  _  _      n         ",
+        "gggggggggggggggggggwwwwwwwwwwwwwwggggggggggggggg",
+        "gggggggggggggggggggggggggggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggggggggggggggggggggggg",
       ],
       gridSize / 2,
       gridSize / 2,
@@ -114,6 +144,9 @@ class Level {
     RecipientObj.forEach((element) => {
       element.y += -element.height / 2 + gridSize / 2;
     });
+    lilypad.forEach((element) => {
+      element.y += -element.height / 2 + gridSize / 2;
+    });
 
     /*
     SPRITE_GROUP.forEach((element) => {
@@ -123,7 +156,7 @@ class Level {
 
     // Groups that need to be placed at the top of the grid
     // position at level creation
-    platform.forEach((element) => {
+    oneWayPlatform.forEach((element) => {
       element.y -= -element.height / 2 + gridSize / 2;
     });
 

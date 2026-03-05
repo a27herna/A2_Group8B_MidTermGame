@@ -12,6 +12,8 @@ class PlayerBase {
     this.mainBody.rotationLock = true;
     this.mainBody.bounciness = 0;
     this.mainBody.friction = 0;
+    this.mainBody.allowSleeping = false;
+
     this.mainBody.layer = 1;
     // this.mainBody.mass = 10;
 
@@ -30,6 +32,7 @@ class PlayerBase {
       carryonLipHeight,
     );
     this.carryon.rotationLock = true;
+    this.carryon.color = "Maroon";
     // this.carryon.mass = 10;
 
     this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);

@@ -31,6 +31,7 @@ function initPackageObj() {
   PackageObj.allowSleeping = false;
   PackageObj.layer = 2;
   PackageObj.collides(ground, destroyPackage);
+  PackageObj.collides(lilypad, destroyPackage);
 
   BrokenPackageObj = new Group();
   BrokenPackageObj.physics = "NONE";
@@ -71,7 +72,8 @@ function createPackageObj(type) {
 let oopsPackage;
 function destroyPackage() {
   oopsPackage = new BrokenPackageObj.Sprite(this.pos.x, this.pos.y);
-  oopsPackage.y = ((int(oopsPackage.y / gridSize) + 1) * gridSize) - oopsPackage.hh;
+  oopsPackage.y =
+    (int(oopsPackage.y / gridSize) + 1) * gridSize - oopsPackage.hh;
   // console.log(oopsPackage.pos);
   packageBrokenCount++;
   // PackageObj.deleteAll();

@@ -5,6 +5,9 @@ let currentLevel;
 
 let packageBrokenCount = 0;
 
+let packageBornTime = 0;
+let timeWithPackage = 0;
+
 let allowPlayerInput = false;
 
 let devCamSkip = true;
@@ -18,7 +21,7 @@ function setup() {
   4. Camera
   */
 
-  createCanvas(500, 500);
+  createCanvas(1000, 500);
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
 
@@ -57,4 +60,11 @@ function draw() {
     console.log(oopsPackage.pos.y);
     console.log(oopsPackage.pos.y / gridSize);
   }
+
+  if (currPackage != null) {
+    timeWithPackage = world.realTime - packageBornTime;
+  }
+
+  text("Time: " + round(timeWithPackage, 2), 20, 20);
+  text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
