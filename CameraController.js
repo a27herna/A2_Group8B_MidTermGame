@@ -20,7 +20,7 @@ async function constrictCamMove(x, y, speed) {
   const maxY = max(0, currentLevel.h - height / 2);
 
   let locX = constrain(x, width / 2, maxX);
-  let locY = constrain(y, width / 2, maxY);
+  let locY = constrain(y, height / 2, maxY);
 
   await camera.moveTo(locX, locY, speed);
   return true;
