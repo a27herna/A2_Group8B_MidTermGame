@@ -65,7 +65,7 @@ function summonPackage() {
 
 
     currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
-    
+    currPackage.overlaps(RecipientObj);
 
     packageBornTime = world.realTime;
     // console.log(this.height);
