@@ -10,7 +10,7 @@ let timeWithPackage = 0;
 
 let allowPlayerInput = false;
 
-let devCamSkip = true;
+let devCamSkip = false;
 
 function setup() {
   /*
@@ -68,3 +68,5 @@ function draw() {
   text("Time: " + round(timeWithPackage, 2), 20, 20);
   text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
+
+
