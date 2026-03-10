@@ -17,7 +17,7 @@ class PlayerBase {
     this.mainBody.layer = 1;
     // this.mainBody.mass = 10;
 
-    this.carryon = new Sprite(x, y - this.mainBody.hh, size, size * 0.2, DYN);
+    this.carryon = new Sprite(x, y - this.mainBody.hh - size * 0.1, size, size * 0.2, DYN);
     this.carryon.layer = 1;
     this.carryon.addCollider(
       this.carryon.hw - 3,
@@ -33,18 +33,24 @@ class PlayerBase {
     );
     this.carryon.rotationLock = true;
     this.carryon.color = "Maroon";
+    // this.carryon.friction = 0;
     // this.carryon.mass = 10;
 
-    this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
+    this.wheeljoiner = new GlueJoint(this.mainBody, this.carryon);
+    // this.wheeljoiner.maxPower = 10000;
+    // this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
     this.wheeljoiner.damping = 1;
-    this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
+    // this.wheeljoiner.enableMotor = true;
+    // this.wheeljoiner.maxPower = 0;
+
+    // this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
     this.wheeljoiner.visible = false;
 
     this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.25);
     this.floorSensor.removeColliders();
-    this.floorSensor.visible = true;
+    this.floorSensor.visible = false;
     this.floorSensor.mass = 0;
-    this.floorSensor.debug = true;
+    this.floorSensor.debug = false;
 
     this.floorJoiner = new GlueJoint(this.mainBody, this.floorSensor);
     this.floorJoiner.visible = false;
@@ -53,11 +59,15 @@ class PlayerBase {
   updatePlayer() {
     this.updateInput();
 
-    if (kb.pressing("w") || kb.pressing("space")) {
-      if (this.floorSensor.overlapping(bouncePad)) {
-        this.mainBody.vel.y = -30;
-      }
-    }
+    // if (kb.pressing("w") || kb.pressing("space")) {
+    //   if (this.floorSensor.overlapping(bouncePad)) {
+    //     this.mainBody.vel.y = -30;
+    //   }
+    // }
+
+    this.carryon.vel.x = 0;
+    this.carryon.pos.x = this.mainBody.pos.x;
+
   }
 
   updateInput() {
@@ -72,6 +82,8 @@ class PlayerBase {
     }
 
     this.mainBody.vel.x = dx * this.speed;
+    this.mainBody.pos.x = constrain(this.mainBody.pos.x, 0, currentLevel?.w ?? 9000);
+
 
     // if (kb.pressing("q")) {
     //   // gluey.speed = 1;

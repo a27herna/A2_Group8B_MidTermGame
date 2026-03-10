@@ -175,7 +175,7 @@ class Level {
 
     // This prevents unintended springback
     mainPlayer.carryon.pos.x = playerStart[0].pos.x;
-    mainPlayer.carryon.pos.y = playerStart[0].pos.y - mainPlayer.mainBody.hh;
+    mainPlayer.carryon.pos.y = playerStart[0].pos.y - mainPlayer.mainBody.hh - mainPlayer.carryon.hh;
   }
 
   async cameraIntro() {
