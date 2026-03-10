@@ -93,3 +93,10 @@ function destroyPackage() {
   this.delete();
   currPackage = null;
 }
+
+function packageWorldBound() {
+  PackageObj.forEach((element) => {
+    element.pos.x = constrain(element.pos.x, 0, currentLevel.w)
+    // element.pos.x = constrain(element.pos.x, 0 + max(element.width, element.height), currentLevel.w - max(element.width, element.height))
+  });
+}

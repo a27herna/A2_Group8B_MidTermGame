@@ -42,6 +42,19 @@ function initPostoffice() {
   PostofficeObj.physics = "NONE";
   PostofficeObj.layer = 0;
 
+  PostofficeObj.draw = function() {
+    push();
+
+    fill("yellow");
+
+    rect(0, 0, PostofficeObj.width, PostofficeObj.height);
+
+    fill("white");
+    rect(0, -PostofficeObj.height / 4, PostofficeObj.width / 5);
+    triangle(-PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, 0, -PostofficeObj.height / 4)
+    pop();
+  }
+
   PostofficeObj.packageList = ["basic"];
   PostofficeObj.packageListLength = PostofficeObj.packageList.length;
   PostofficeObj.currPackageIndex = -1;
@@ -65,6 +78,8 @@ function summonPackage() {
 
 
     currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
+
+    currPackage.overlapping(RecipientObj);
     
 
     packageBornTime = world.realTime;

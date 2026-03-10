@@ -10,7 +10,11 @@ let timeWithPackage = 0;
 
 let allowPlayerInput = false;
 
-let devCamSkip = false;
+let devCamSkip = true;
+
+let instructionSkip = false;
+
+let cnv;
 
 function setup() {
   /*
@@ -21,11 +25,12 @@ function setup() {
   4. Camera
   */
 
-  createCanvas(1000, 500);
+  cnv = createCanvas(1100, 700);
+  cnv.position((windowWidth - width)/2, (windowHeight - height)/2, );
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
 
-  mainPlayer = new PlayerBase(width / 2, height / 2, 2);
+  mainPlayer = new PlayerBase(width / 2, height / 2, 4);
   currentLevel = new Level([]);
 
   console.log(currentLevel.w + " | " + currentLevel.h);
@@ -41,24 +46,38 @@ function setup() {
 
 function draw() {
   background(220);
+  
+  if (instructionSkip) {
+
+  }
+  
 
   currentLevel.updateTerrain();
+  packageWorldBound();
 
   if (allowPlayerInput) {
-    mainPlayer.updateInput();
+    mainPlayer.updatePlayer();
     updateCamera();
   }
 
   if (kb.presses("1")) {
-    console.log(mainPlayer.mainBody.mass);
+    console.log(mainPlayer.mainBody.pos.x);
+    console.log(mainPlayer.carryon.pos.x);
+    console.log(mainPlayer.wheeljoiner)
   }
   if (kb.presses("2")) {
-    console.log(currPackage.mass);
+    console.log(mainPlayer.mainBody.vel.x);
+    console.log(mainPlayer.mainBody.vel.y);
+    console.log(mainPlayer.carryon.vel.x);
+    console.log(mainPlayer.carryon.vel.y);
   }
   if (kb.presses("3")) {
     console.log(oopsPackage.pos.x);
     console.log(oopsPackage.pos.y);
     console.log(oopsPackage.pos.y / gridSize);
+  }
+  if (kb.presses("4")) {
+    console.log(RecipientObj[1].overlapping(currPackage));
   }
 
   if (currPackage != null) {
