@@ -25,8 +25,8 @@ let BrokenPackageObj;
 function initPackageObj() {
   PackageObj = new Group();
   PackageObj.physics = "DYN";
-  PackageObj.gravityScale = 1;
-  PackageObj.mass = 1;
+  PackageObj.gravityScale = 2;
+  PackageObj.mass = 5;
   PackageObj.overlaps(mainPlayer.mainBody);
   PackageObj.allowSleeping = false;
   PackageObj.layer = 2;

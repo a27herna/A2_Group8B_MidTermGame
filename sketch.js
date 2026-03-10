@@ -25,7 +25,7 @@ function setup() {
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 10;
 
-  mainPlayer = new PlayerBase(width / 2, height / 2, 2);
+  mainPlayer = new PlayerBase(width / 2, height / 2, 5);
   currentLevel = new Level([]);
 
   console.log(currentLevel.w + " | " + currentLevel.h);
@@ -68,5 +68,3 @@ function draw() {
   text("Time: " + round(timeWithPackage, 2), 20, 20);
   text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
-
-

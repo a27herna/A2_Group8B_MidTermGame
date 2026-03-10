@@ -183,12 +183,12 @@ class Level {
     console.log(camera.y);
 
     for (let element of RecipientObj) {
-      await constrictCamMove(element.x, element.y, 2);
+      await constrictCamMove(element.x, element.y, 10);
       console.log(element.x);
       console.log(element.y);
     }
 
-    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 5);
+    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 14);
     allowPlayerInput = true;
   }
 
