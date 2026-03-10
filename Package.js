@@ -38,7 +38,7 @@ function initPackageObj() {
   BrokenPackageObj.shape = "box";
   BrokenPackageObj.width = 30;
   BrokenPackageObj.height = 30;
-  BrokenPackageObj.draw = function () {
+  BrokenPackageObj.draw = function() {
     push();
     fill(200, 200, 255);
     triangle(
@@ -58,6 +58,19 @@ function initPackageObj() {
   BasicBox.width = 30;
   BasicBox.height = 30;
   BasicBox.packageType = "basic";
+
+  BasicBox.draw = function() {
+    push();
+
+    stroke("Black");
+    fill("Orange");
+
+    rect(0, 0, BasicBox.width, BasicBox.height);
+    line(-BasicBox.width / 2, -BasicBox.height / 2, BasicBox.width / 2, BasicBox.height / 2);
+    line(-BasicBox.width / 2, BasicBox.height / 2, BasicBox.width / 2, -BasicBox.height / 2);
+
+    pop();
+  }
 }
 
 function createPackageObj(type) {
