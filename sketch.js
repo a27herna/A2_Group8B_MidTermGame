@@ -14,8 +14,16 @@ let allowPlayerInput = false;
 let devCamSkip = true;
 
 let instructionSkip = false;
-
 let cnv;
+
+let levelData;
+
+function preload() {
+  getPlayerSaveData();
+
+  levelData = loadJSON("levelData.json");
+  console.log(levelData);
+}
 
 function setup() {
   /*
@@ -27,7 +35,8 @@ function setup() {
   */
  
  cnv = createCanvas(1100, 700);
- cnv.position((windowWidth - width)/2, (windowHeight - height)/2, );
+ cnv.position((windowWidth - width)/2, (windowHeight - height)/2);
+
  // ALWAYS ESTABLISH WORLD GRAVITY
  world.gravity.y = 0;
  mainPlayer = new PlayerBase(width / 2, height / 2, 4);
@@ -112,6 +121,8 @@ function initLevel(index) {
     } else {
       setTimeout(currentLevel.cameraIntro, 1500);
     }
+  } else {
+
   }
 
   
