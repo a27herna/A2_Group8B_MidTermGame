@@ -99,7 +99,7 @@ class Level {
         "                                          nn    ",
         "                                     nn         ",
         "          gg                              nn    ",
-        "  o  S   ggg        _ _  _  _  _      n         ",
+        "  o S    ggg        _ _  _  _  _      n         ",
         "gggggggggggggggggggwwwwwwwwwwwwwwggggggggggggggg",
         "gggggggggggggggggggggggggggggggggggggggggggggggg",
         "gggggggggggggggggggggggggggggggggggggggggggggggg",
@@ -123,7 +123,7 @@ class Level {
     this.w = gridSize * this.tilew;
     this.h = gridSize * this.tileh;
 
-    terrainDefinition();
+
     this.TileMap = new Tiles(
       this.tileSet[0],
       this.tileSet[1],
@@ -166,16 +166,25 @@ class Level {
     })
     */
 
+    // console.log(this.TileMap);
+    // console.log(playerStart);
     this.levelBegin();
   }
 
   levelBegin() {
+    
     mainPlayer.mainBody.pos.x = playerStart[0].pos.x;
     mainPlayer.mainBody.pos.y = playerStart[0].pos.y;
-
+    
     // This prevents unintended springback
     mainPlayer.carryon.pos.x = playerStart[0].pos.x;
     mainPlayer.carryon.pos.y = playerStart[0].pos.y - mainPlayer.mainBody.hh - mainPlayer.carryon.hh;
+    
+
+    mainPlayer.mainBody.vel.x = 0;
+    mainPlayer.mainBody.vel.y = 0;
+    mainPlayer.carryon.vel.x = 0;
+    mainPlayer.carryon.vel.y = 0;
   }
 
   async cameraIntro() {
@@ -183,12 +192,13 @@ class Level {
     console.log(camera.y);
 
     for (let element of RecipientObj) {
-      await constrictCamMove(element.x, element.y, 2);
-      console.log(element.x);
-      console.log(element.y);
+      await constrictCamMove(element.x, element.y, 10);
+      await delay(500);
+      // console.log(element.x);
+      // console.log(element.y);
     }
 
-    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 5);
+    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 14);
     allowPlayerInput = true;
   }
 
@@ -201,6 +211,9 @@ class Level {
       }
     });
   }
+
+
+
 
   // !!!!!REMOVE LATER!!!!!
   // drawBackground() {
@@ -228,4 +241,9 @@ class Level {
   //     } else rect(p.x, p.y, p.w, p.h, p.r ?? 0);
   //   }
   // }
+}
+
+function removeRealTimeObjects() {
+  PackageObj.deleteAll();
+  BrokenPackageObj.deleteAll();
 }

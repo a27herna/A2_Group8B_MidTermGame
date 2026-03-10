@@ -1,6 +1,7 @@
 let mainPlayer;
 let mainBody;
 
+let currentLevelIndex = null;
 let currentLevel;
 
 let packageBrokenCount = 0;
@@ -24,42 +25,41 @@ function setup() {
   3. Level
   4. Camera
   */
-
-  cnv = createCanvas(1100, 700);
-  cnv.position((windowWidth - width)/2, (windowHeight - height)/2, );
-  // ALWAYS ESTABLISH WORLD GRAVITY
-  world.gravity.y = 10;
-
-  mainPlayer = new PlayerBase(width / 2, height / 2, 4);
-  currentLevel = new Level([]);
-
-  console.log(currentLevel.w + " | " + currentLevel.h);
-
-  initCamPos();
-
-  if (devCamSkip) {
-    allowPlayerInput = true;
-  } else {
-    setTimeout(currentLevel.cameraIntro, 1500);
-  }
+ 
+ cnv = createCanvas(1100, 700);
+ cnv.position((windowWidth - width)/2, (windowHeight - height)/2, );
+ // ALWAYS ESTABLISH WORLD GRAVITY
+ world.gravity.y = 0;
+ mainPlayer = new PlayerBase(width / 2, height / 2, 4);
+ terrainDefinition();
+ 
+ initLevel();
 }
 
 function draw() {
   background(220);
   
   if (instructionSkip) {
-
+    
   }
   
-
+  
   currentLevel.updateTerrain();
   packageWorldBound();
-
+  
   if (allowPlayerInput) {
     mainPlayer.updatePlayer();
     updateCamera();
+    
+    if (kb.presses('r')) {
+      initLevel();
+    }
   }
-
+  
+  
+  
+  
+  
   if (kb.presses("1")) {
     console.log(mainPlayer.mainBody.pos.x);
     console.log(mainPlayer.carryon.pos.x);
@@ -79,13 +79,40 @@ function draw() {
   if (kb.presses("4")) {
     console.log(RecipientObj[1].overlapping(currPackage));
   }
-
+  
+  
+  
+  
+  
+  
   if (currPackage != null) {
     timeWithPackage = world.realTime - packageBornTime;
   }
-
+  
   text("Time: " + round(timeWithPackage, 2), 20, 20);
   text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
 
 
+function initLevel(index) {
+  if (!index) {
+    currentLevel?.TileMap.delete();
+    removeRealTimeObjects();
+
+    world.gravity.y = 10;
+    currentLevel = null;
+    currentLevel = new Level([]);
+  
+    // console.log(currentLevel.w + " | " + currentLevel.h);
+
+    initCamPos();
+
+    if (devCamSkip) {
+     allowPlayerInput = true;
+    } else {
+      setTimeout(currentLevel.cameraIntro, 1500);
+    }
+  }
+
+  
+}
