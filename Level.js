@@ -75,34 +75,34 @@ class Level {
         "",
         "",
         "",
-        "                                                ",
-        "                                                ",
-        "                                         r      ",
-        "                                  nnnnnnnnnnnnn ",
-        "                                                ",
-        "                                     nnn        ",
-        "                                                ",
-        "                                         nnn    ",
-        "                                                ",
-        "                                     nnn        ",
-        "                                                ",
-        "                                         nnn    ",
-        "                                     nn         ",
-        "                                          nn    ",
-        "                                     nn         ",
-        "                                          nn    ",
-        "                                     nn         ",
-        "                                          nn    ",
-        "                                     nn         ",
-        "                                          nn    ",
-        "                                     nn         ",
-        "                                          nn    ",
-        "                                     nn         ",
-        "          gg                              nn    ",
-        "  o S    ggg        _ _  _  _  _      n         ",
-        "gggggggggggggggggggwwwwwwwwwwwwwwggggggggggggggg",
-        "gggggggggggggggggggggggggggggggggggggggggggggggg",
-        "gggggggggggggggggggggggggggggggggggggggggggggggg",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                               r      ",
+        "                                                        nnnnnnnnnnnnn ",
+        "                                                                      ",
+        "                                                           nnn        ",
+        "                                                                      ",
+        "                                                               nnn    ",
+        "                                                                      ",
+        "                                                           nnn        ",
+        "                                                                      ",
+        "                                                               nnn    ",
+        "                                                           nn         ",
+        "                                                                nn    ",
+        "                                                           nn         ",
+        "                                                                nn    ",
+        "                                                           nn         ",
+        "gg                                                              nn    ",
+        "gg                                                         nn         ",
+        "gg                                                              nn    ",
+        "gg                                                         nn         ",
+        "gg                                                              nn    ",
+        "gg                                                         nn         ",
+        "gg                                                              nn    ",
+        "gg  S                     o      _ _  _  _  _               n         ",
+        "gggggggggggwwwwwwwwgggggggggggggwwwwwwwwwwwwwwgggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
       ],
       gridSize / 2,
       gridSize / 2,
@@ -186,17 +186,29 @@ class Level {
   }
 
   async cameraIntro() {
-    console.log(camera.x);
-    console.log(camera.y);
+    // console.log(camera.x);
+    // console.log(camera.y);
+    let cameraHoldDur = 750;
+    let cameraPanSpeed = 10;
 
+    for (let element of PostofficeObj) {
+      await constrictCamMove(element.x, element.y, cameraPanSpeed);
+      await delay(cameraHoldDur);
+      // console.log(element.x);
+      // console.log(element.y);
+    }
     for (let element of RecipientObj) {
-      await constrictCamMove(element.x, element.y, 10);
-      await delay(500);
+      await constrictCamMove(element.x, element.y, cameraPanSpeed);
+      await delay(cameraHoldDur);
       // console.log(element.x);
       // console.log(element.y);
     }
 
-    await constrictCamMove(mainPlayer.mainBody.x, mainPlayer.mainBody.y, 14);
+    await constrictCamMove(
+      mainPlayer.mainBody.x,
+      mainPlayer.mainBody.y,
+      cameraPanSpeed * 1.4,
+    );
     allowPlayerInput = true;
   }
 

@@ -14,6 +14,16 @@ function mainDisplay() {
   }
 }
 
+function displayHUD() {
+  if (currPackage != null) {
+    timeWithPackage = round(world.realTime - packageBornTime, 2);
+  }
+
+  textSize(24);
+  text("Time: " + timeWithPackage, 20, 10 + textSize());
+  text('Packages "lost": ' + packageBrokenCount, 20, 10 + textSize() * 2);
+}
+
 function levelComplete() {
   noLoop();
   allSprites.draw();
@@ -41,7 +51,6 @@ function drawLevelScore() {
   let starSpacing = 120;
   let starSize = 30;
 
-  //   fill("blue");
   for (let i = 0; i < targetScores.length; i++) {
     let placementX = width / 2 + starSpacing * (i - 1);
     let placementY = height * 0.45;
@@ -78,25 +87,11 @@ function drawLevelScore() {
     completionTimeMil = "00";
   }
 
-  fill("white");
-  noStroke();
-  textSize(36);
-
-  text(
-    " - Completion Time - \n" +
-      completionTimeMin +
-      ":" +
-      completionTimeSec +
-      ":" +
-      completionTimeMil,
-    width / 2,
-    height * 0.6,
-  );
-
   let bestScore =
-    playerSaveDataTemp["BestTimes"][currentLevelIndex] ?? currentTime;
+    playerSaveDataTemp["BestTimes"][currentLevelIndex] ?? 999999999;
 
   if (currentTime < bestScore) {
+    playerSaveDataTemp["BestTimes"][currentLevelIndex] = currentTime;
     saveToPlayerSaveData();
     bestScore = currentTime;
   }
@@ -121,6 +116,17 @@ function drawLevelScore() {
   fill("white");
   noStroke();
   textSize(36);
+
+  text(
+    " - Completion Time - \n" +
+      completionTimeMin +
+      ":" +
+      completionTimeSec +
+      ":" +
+      completionTimeMil,
+    width / 2,
+    height * 0.6,
+  );
 
   text(
     " - Record Time - \n" + bestTimeMin + ":" + bestTimeSec + ":" + bestTimeMil,

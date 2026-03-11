@@ -4,10 +4,12 @@ function getPlayerSaveData() {
   console.log(playerSaveDataTemp);
 
   if (playerSaveDataTemp == null) {
-    playerSaveDataTemp = storeItem("playerSaveData", { BestTimes: [] });
+    playerSaveDataTemp = { BestTimes: [] };
+    storeItem("playerSaveData", playerSaveDataTemp);
   }
 }
 
 function saveToPlayerSaveData() {
-  //temp
+  storeItem("playerSaveData", playerSaveDataTemp);
+  console.log(getItem("playerSaveData"));
 }

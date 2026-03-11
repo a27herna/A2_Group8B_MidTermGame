@@ -11,7 +11,7 @@ let timeWithPackage = 0;
 
 let allowPlayerInput = false;
 
-let devCamSkip = true;
+let devCamSkip = false;
 
 let instructionSkip = false;
 let cnv;
@@ -57,10 +57,6 @@ function update() {
   if (allowPlayerInput) {
     mainPlayer.updatePlayer();
     updateCamera();
-
-    if (kb.presses("r")) {
-      initLevel();
-    }
   }
 
   if (kb.presses("1")) {
@@ -76,6 +72,16 @@ function update() {
   }
 }
 
+function keyPressed() {
+  if (key === "r" || key === "R") {
+    if (allowPlayerInput) {
+      //this is a hack solution please fix
+      initLevel();
+      initLevel();
+    }
+  }
+}
+
 function drawFrame() {
   background(220);
 
@@ -84,13 +90,17 @@ function drawFrame() {
 }
 
 function initLevel(index) {
+  loop();
   if (!index) {
-    currentLevel?.TileMap.delete();
     removeRealTimeObjects();
+    currentLevel?.TileMap.delete();
 
     world.gravity.y = 10;
     currentLevel = null;
     currentLevel = new Level([]);
+
+    timeWithPackage = 0;
+    packageBrokenCount = 0;
 
     // console.log(currentLevel.w + " | " + currentLevel.h);
 
@@ -116,13 +126,4 @@ function checkLevelComplete() {
   });
 
   return completeCheck;
-}
-
-function displayHUD() {
-  if (currPackage != null) {
-    timeWithPackage = round(world.realTime - packageBornTime, 2);
-  }
-
-  text("Time: " + timeWithPackage, 20, 20);
-  text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
