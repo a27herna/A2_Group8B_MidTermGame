@@ -32,34 +32,101 @@ function levelComplete() {
 }
 
 function drawLevelScore() {
-  let currentTime = timeWithPackage + 15 * packageBrokenCount;
+  let packagePentalty = 15;
+
+  let currentTime = timeWithPackage + packagePentalty * packageBrokenCount;
   let targetScores = levelData[currentLevelIndex]?.targetScores ?? [75, 60, 45];
   let currentScore = 0;
 
   let starSpacing = 120;
   let starSize = 30;
 
-  stroke("black");
-  strokeWeight(2);
   //   fill("blue");
   for (let i = 0; i < targetScores.length; i++) {
+    let placementX = width / 2 + starSpacing * (i - 1);
+    let placementY = height * 0.45;
+
+    stroke("black");
+    strokeWeight(2);
     if (currentTime < targetScores[i]) {
       currentScore++;
       fill("gold");
     } else {
       fill("white");
     }
-    drawStar(
-      width / 2 + starSpacing * (i - 1),
-      height * 0.45,
-      starSize,
-      starSize * 1.75
-    );
+    drawStar(placementX, height * 0.45, starSize, starSize * 1.75);
 
-    textSize();
+    textSize(24);
+    noStroke();
+    fill("black");
+    text(targetScores[i], placementX, placementY + textSize() / 4);
+  }
+
+  let completionTimeMin = int(currentTime / 60);
+
+  let completionTimeSec = int(currentTime);
+  if (completionTimeSec < 10) {
+    completionTimeSec = "0" + completionTimeSec;
+  } else if (completionTimeSec < 1) {
+    completionTimeSec = "00";
+  }
+
+  let completionTimeMil = int((-int(currentTime) + currentTime) * 100);
+  if (completionTimeMil < 10) {
+    completionTimeMil = "0" + completionTimeMil;
+  } else if (completionTimeMil < 1) {
+    completionTimeMil = "00";
+  }
+
+  fill("white");
+  noStroke();
+  textSize(36);
+
+  text(
+    " - Completion Time - \n" +
+      completionTimeMin +
+      ":" +
+      completionTimeSec +
+      ":" +
+      completionTimeMil,
+    width / 2,
+    height * 0.6,
+  );
+
+  let bestScore =
+    playerSaveDataTemp["BestTimes"][currentLevelIndex] ?? currentTime;
+
+  if (currentTime < bestScore) {
+    saveToPlayerSaveData();
+    bestScore = currentTime;
   }
 
   //   new Sprite(250, 80, [50, -72, 50, 144, 5]);
+  let bestTimeMin = int(bestScore / 60);
+
+  let bestTimeSec = int(bestScore);
+  if (bestTimeSec < 10) {
+    bestTimeSec = "0" + bestTimeSec;
+  } else if (bestTimeSec < 1) {
+    bestTimeSec = "00";
+  }
+
+  let bestTimeMil = int((-int(bestScore) + bestScore) * 100);
+  if (bestTimeMil < 10) {
+    bestTimeMil = "0" + bestTimeMil;
+  } else if (bestTimeMil < 1) {
+    bestTimeMil = "00";
+  }
+
+  fill("white");
+  noStroke();
+  textSize(36);
+
+  text(
+    " - Record Time - \n" + bestTimeMin + ":" + bestTimeSec + ":" + bestTimeMil,
+    width / 2,
+    height * 0.75,
+  );
 }
 
 function drawStar(x, y, radius1, radius2, npoints = 5) {

@@ -1,7 +1,7 @@
 let mainPlayer;
 let mainBody;
 
-let currentLevelIndex = null;
+let currentLevelIndex = 0;
 let currentLevel;
 
 let packageBrokenCount = 0;
@@ -120,9 +120,9 @@ function checkLevelComplete() {
 
 function displayHUD() {
   if (currPackage != null) {
-    timeWithPackage = world.realTime - packageBornTime;
+    timeWithPackage = round(world.realTime - packageBornTime, 2);
   }
 
-  text("Time: " + round(timeWithPackage, 2), 20, 20);
+  text("Time: " + timeWithPackage, 20, 20);
   text('Packages "lost": ' + packageBrokenCount, 20, 40);
 }
