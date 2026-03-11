@@ -39,7 +39,7 @@ function setup() {
 
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 0;
-  mainPlayer = new PlayerBase(width / 2, height / 2, 4);
+  mainPlayer = new PlayerBase(width / 2, height / 2, 5);
   terrainDefinition();
 
   initLevel();
