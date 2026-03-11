@@ -82,6 +82,7 @@ class PlayerBase {
     }
 
     this.mainBody.vel.x = dx * this.speed;
+    this.mainBody.pos.x = constrain(this.mainBody.pos.x, 0, currentLevel?.w ?? 9000);
 
     // if (kb.pressing("q")) {
     //   // gluey.speed = 1;
