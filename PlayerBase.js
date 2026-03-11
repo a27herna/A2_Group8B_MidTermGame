@@ -44,14 +44,14 @@ class PlayerBase {
     // this.carryon.friction = 0;
     // this.carryon.mass = 10;
 
-    this.wheeljoiner = new GlueJoint(this.mainBody, this.carryon);
+    // this.wheeljoiner = new GlueJoint(this.mainBody, this.carryon);
     // this.wheeljoiner.maxPower = 10000;
-    // this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
+    this.wheeljoiner = new WheelJoint(this.mainBody, this.carryon);
     this.wheeljoiner.damping = 1;
     // this.wheeljoiner.enableMotor = true;
     // this.wheeljoiner.maxPower = 0;
 
-    // this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
+    this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
     this.wheeljoiner.visible = false;
 
     this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.25);
@@ -79,7 +79,7 @@ class PlayerBase {
     //   }
     // }
 
-    this.carryon.vel.x = 0;
+    // this.carryon.vel.x = 0;
     this.carryon.pos.x = this.mainBody.pos.x;
   }
 

@@ -26,7 +26,7 @@ function initPackageObj() {
   PackageObj = new Group();
   PackageObj.physics = "DYN";
   PackageObj.gravityScale = 2;
-  PackageObj.mass = 2;
+  PackageObj.mass = 5;
   PackageObj.overlaps(mainPlayer.mainBody);
   PackageObj.allowSleeping = false;
   PackageObj.layer = 2;
