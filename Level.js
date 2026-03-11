@@ -53,8 +53,8 @@ function terrainDefinition() {
   playerStart.width = 5;
   playerStart.height = 5;
   playerStart.physics = "NONE";
-  playerStart.visible = true;
-  playerStart.debug = true;
+  playerStart.visible = false;
+  playerStart.debug = false;
   playerStart.tile = "S";
 }
 
@@ -77,7 +77,7 @@ class Level {
         "",
         "                                                ",
         "                                                ",
-        "                                         r      ",
+        "                                                ",
         "                                  nnnnnnnnnnnnn ",
         "                                                ",
         "                                     nnn        ",
@@ -99,7 +99,7 @@ class Level {
         "                                          nn    ",
         "                                     nn         ",
         "          gg                              nn    ",
-        "  o S    ggg        _ _  _  _  _      n         ",
+        "  o S r  ggg        _ _  _  _  _      n         ",
         "gggggggggggggggggggwwwwwwwwwwwwwwggggggggggggggg",
         "gggggggggggggggggggggggggggggggggggggggggggggggg",
         "gggggggggggggggggggggggggggggggggggggggggggggggg",
@@ -122,7 +122,6 @@ class Level {
 
     this.w = gridSize * this.tilew;
     this.h = gridSize * this.tileh;
-
 
     this.TileMap = new Tiles(
       this.tileSet[0],
@@ -172,14 +171,13 @@ class Level {
   }
 
   levelBegin() {
-    
     mainPlayer.mainBody.pos.x = playerStart[0].pos.x;
     mainPlayer.mainBody.pos.y = playerStart[0].pos.y;
-    
+
     // This prevents unintended springback
     mainPlayer.carryon.pos.x = playerStart[0].pos.x;
-    mainPlayer.carryon.pos.y = playerStart[0].pos.y - mainPlayer.mainBody.hh - mainPlayer.carryon.hh;
-    
+    mainPlayer.carryon.pos.y =
+      playerStart[0].pos.y - mainPlayer.mainBody.hh - mainPlayer.carryon.hh;
 
     mainPlayer.mainBody.vel.x = 0;
     mainPlayer.mainBody.vel.y = 0;
@@ -212,9 +210,6 @@ class Level {
     });
   }
 
-
-
-
   // !!!!!REMOVE LATER!!!!!
   // drawBackground() {
   //   background(220);
@@ -246,4 +241,7 @@ class Level {
 function removeRealTimeObjects() {
   PackageObj.deleteAll();
   BrokenPackageObj.deleteAll();
+
+  currPackage = null;
+  oopsPackage = null;
 }
