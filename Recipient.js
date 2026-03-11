@@ -18,11 +18,11 @@ function initRecipientObj() {
 }
 
 function acceptPackage() {
-  console.log("inside");
+  // console.log("inside");
   //   console.log(this.overlapping(currPackage));
   if (kb.presses("e")) {
     if (currPackage != null) {
-      console.log("YAY");
+      // console.log("YAY");
       this.sleeping = false;
       mainPlayer.mainBody.sleeping = false;
       currPackage.sleeping = false;
@@ -30,7 +30,7 @@ function acceptPackage() {
         this.overlapping(currPackage) &&
         currPackage.packageType == this.targetPackage
       ) {
-        console.log("YIPPEEE!!!!");
+        // console.log("YIPPEEE!!!!");
         this.satisfied = true;
         this.color = "green";
 

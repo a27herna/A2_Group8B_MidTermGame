@@ -25,20 +25,21 @@ let BrokenPackageObj;
 function initPackageObj() {
   PackageObj = new Group();
   PackageObj.physics = "DYN";
-  PackageObj.gravityScale = 1;
-  PackageObj.mass = 1;
+  PackageObj.gravityScale = 1.8;
+  PackageObj.mass = 5;
   PackageObj.overlaps(mainPlayer.mainBody);
   PackageObj.allowSleeping = false;
   PackageObj.layer = 2;
   PackageObj.collides(ground, destroyPackage);
   PackageObj.collides(lilypad, destroyPackage);
+  PackageObj.overlaps(oneWayPlatform);
 
   BrokenPackageObj = new Group();
   BrokenPackageObj.physics = "NONE";
   BrokenPackageObj.shape = "box";
   BrokenPackageObj.width = 30;
   BrokenPackageObj.height = 30;
-  BrokenPackageObj.draw = function() {
+  BrokenPackageObj.draw = function () {
     push();
     fill(200, 200, 255);
     triangle(
@@ -59,18 +60,28 @@ function initPackageObj() {
   BasicBox.height = 30;
   BasicBox.packageType = "basic";
 
-  BasicBox.draw = function() {
+  BasicBox.draw = function () {
     push();
 
     stroke("Black");
     fill("Orange");
 
     rect(0, 0, BasicBox.width, BasicBox.height);
-    line(-BasicBox.width / 2, -BasicBox.height / 2, BasicBox.width / 2, BasicBox.height / 2);
-    line(-BasicBox.width / 2, BasicBox.height / 2, BasicBox.width / 2, -BasicBox.height / 2);
+    line(
+      -BasicBox.width / 2,
+      -BasicBox.height / 2,
+      BasicBox.width / 2,
+      BasicBox.height / 2,
+    );
+    line(
+      -BasicBox.width / 2,
+      BasicBox.height / 2,
+      BasicBox.width / 2,
+      -BasicBox.height / 2,
+    );
 
     pop();
-  }
+  };
 }
 
 function createPackageObj(type) {
@@ -96,7 +107,7 @@ function destroyPackage() {
 
 function packageWorldBound() {
   PackageObj.forEach((element) => {
-    element.pos.x = constrain(element.pos.x, 0, currentLevel.w)
+    element.pos.x = constrain(element.pos.x, 0, currentLevel.w);
     // element.pos.x = constrain(element.pos.x, 0 + max(element.width, element.height), currentLevel.w - max(element.width, element.height))
   });
 }

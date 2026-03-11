@@ -1,7 +1,9 @@
 class PlayerBase {
   constructor(x, y, speed) {
     let size = 60;
-    this.jumpStrength = 10;
+    this.packageJumpStrength = 18;
+    this.baseJumpStrength = 8;
+    this.jumpStrength = this.baseJumpStrength;
 
     this.speed = speed;
 
@@ -17,7 +19,13 @@ class PlayerBase {
     this.mainBody.layer = 1;
     // this.mainBody.mass = 10;
 
-    this.carryon = new Sprite(x, y - this.mainBody.hh - size * 0.1, size, size * 0.2, DYN);
+    this.carryon = new Sprite(
+      x,
+      y - this.mainBody.hh - size * 0.1,
+      size,
+      size * 0.2,
+      DYN,
+    );
     this.carryon.layer = 1;
     this.carryon.addCollider(
       this.carryon.hw - 3,
@@ -57,6 +65,12 @@ class PlayerBase {
   }
 
   updatePlayer() {
+    if (currPackage != null) {
+      this.jumpStrength = this.packageJumpStrength;
+    } else {
+      this.jumpStrength = this.baseJumpStrength;
+    }
+
     this.updateInput();
 
     // if (kb.pressing("w") || kb.pressing("space")) {
@@ -67,7 +81,6 @@ class PlayerBase {
 
     this.carryon.vel.x = 0;
     this.carryon.pos.x = this.mainBody.pos.x;
-
   }
 
   updateInput() {
@@ -82,7 +95,11 @@ class PlayerBase {
     }
 
     this.mainBody.vel.x = dx * this.speed;
-    this.mainBody.pos.x = constrain(this.mainBody.pos.x, 0, currentLevel?.w ?? 9000);
+    this.mainBody.pos.x = constrain(
+      this.mainBody.pos.x,
+      0,
+      currentLevel?.w ?? 9000,
+    );
 
     // if (kb.pressing("q")) {
     //   // gluey.speed = 1;
