@@ -37,6 +37,7 @@ function setup() {
   3. Level
   4. Camera
   */
+ world.updateRate = 60;
 
   cnv = createCanvas(1150, 650);
   cnv.position((windowWidth - width) / 2, (windowHeight - height) / 2);
