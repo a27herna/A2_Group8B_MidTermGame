@@ -42,18 +42,24 @@ function initPostoffice() {
   PostofficeObj.physics = "NONE";
   PostofficeObj.layer = 0;
 
-  PostofficeObj.draw = function() {
-    push();
+  // PostofficeObj.draw = function() {
+  //   push();
 
-    fill("yellow");
+  //   fill("yellow");
 
-    rect(0, 0, PostofficeObj.width, PostofficeObj.height);
+  //   rect(0, 0, PostofficeObj.width, PostofficeObj.height);
 
-    fill("white");
-    rect(0, -PostofficeObj.height / 4, PostofficeObj.width / 5);
-    triangle(-PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, 0, -PostofficeObj.height / 4)
-    pop();
-  }
+  //   fill("white");
+  //   rect(0, -PostofficeObj.height / 4, PostofficeObj.width / 5);
+  //   triangle(-PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, PostofficeObj.width / 10, -PostofficeObj.height / 4 - PostofficeObj.width / 10, 0, -PostofficeObj.height / 4)
+  //   pop();
+  // }
+
+  postOfficeImg.resize(0, objHeight * 1.5);
+  PostofficeObj.image = postOfficeImg;
+
+  PostofficeObj.image.offset.y = -postOfficeImg.height / 8;
+  // PostofficeObj.image.scale = 0.5;
 
   PostofficeObj.packageList = ["basic"];
   PostofficeObj.packageListLength = PostofficeObj.packageList.length;
@@ -66,26 +72,25 @@ function initPostoffice() {
 
 let currPackage;
 function summonPackage() {
-
-
-  if (kb.presses('e')) {
+  if (kb.presses("e")) {
     this.currPackageIndex++;
-    this.currPackageIndex = constrain(this.currPackageIndex, 0, this.packageListLength - 1);
+    this.currPackageIndex = constrain(
+      this.currPackageIndex,
+      0,
+      this.packageListLength - 1,
+    );
 
     // console.log(this.packageList);
     console.log(this.currPackageIndex);
     console.log(this.packageList[this.currPackageIndex]);
 
-
     currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
 
     currPackage.overlapping(RecipientObj);
-    
 
     packageBornTime = world.realTime;
     // console.log(this.height);
     currPackage.pos = this.pos;
-    currPackage.y -=  this.height / 4;
+    currPackage.y -= this.height / 4;
   }
 }
-

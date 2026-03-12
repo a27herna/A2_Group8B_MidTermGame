@@ -1,10 +1,46 @@
+let backgroundTile;
+let treeBaseTile;
+let treeMidTile;
+
 let floorTile;
 let ground;
+let dirt;
 let bounce;
 let lilypad;
 let playerStart;
 
 let gridSize = 50;
+
+function backgroundTerrainDefinition() {
+  backgroundTile = new Group();
+  backgroundTile.layer = 0;
+  backgroundTile.physics = "NONE";
+  backgroundTile.width = gridSize * 10;
+  backgroundTile.height = gridSize * 10;
+
+  treeBaseTile = new backgroundTile.Group();
+  // treeBaseTile.tile = "B";
+  treeBaseTileImg.resize(0, treeBaseTile.width);
+  treeBaseTile.img = treeBaseTileImg;
+  treeBaseTile.img.offset.y = -treeBaseTile.height / 4;
+
+  treeMidTile = new backgroundTile.Group();
+  // treeMidTile.tile = "T";
+  treeMidTile.img = treeMidTileImg;
+  treeMidTileImg.resize(0, treeMidTile.width);
+  treeMidTile.img = treeMidTileImg;
+  treeMidTile.img.offset.y = -treeMidTile.height / 4;
+  treeMidTile.img.offset.x = -treeMidTile.height / 16;
+  // treeMidTile.img.scale.y = -1;
+
+  treeFullTile = new backgroundTile.Group();
+  treeFullTile.width = gridSize * 10;
+  treeFullTile.height = gridSize * 32;
+  treeFullTile.tile = "T";
+  treeFullTileImg.resize(0, treeFullTile.height);
+  treeFullTile.img = treeFullTileImg;
+  treeFullTile.img.offset.y = -treeFullTile.height / 2 + 180;
+}
 
 function terrainDefinition() {
   floorTile = new Group();
@@ -16,6 +52,17 @@ function terrainDefinition() {
   ground.width = gridSize;
   ground.color = "SaddleBrown";
   ground.tile = "g";
+  ground.img = grassTileImg;
+  ground.img.scale = gridSize / grassTileImg.width;
+
+  dirt = new floorTile.Group();
+  dirt.physics = "static";
+  dirt.layer = 0;
+  dirt.width = gridSize;
+  dirt.color = "SaddleBrown";
+  dirt.tile = "d";
+  dirt.img = dirtTileImg;
+  dirt.img.scale = gridSize / dirtTileImg.width;
 
   platform = new floorTile.Group();
   platform.physics = "static";
@@ -25,8 +72,10 @@ function terrainDefinition() {
   platform.tile = "p";
 
   lilypad = new platform.Group();
+  lilypad.height = (gridSize * 1) / 7.5;
   lilypad.color = "SeaGreen";
   lilypad.tile = "_";
+  lilypad.stroke = "SeaGreen";
 
   oneWayPlatform = new platform.Group();
   oneWayPlatform.physics = "NONE";
@@ -42,6 +91,8 @@ function terrainDefinition() {
   VisualForegroundTile.layer = 999;
   VisualForegroundTile.fill = "blue";
   VisualForegroundTile.tile = "w";
+  VisualForegroundTile.img = waterTileImg;
+  VisualForegroundTile.scale = gridSize / waterTileImg.width;
 
   initPostoffice();
   PostofficeObj.tile = "o";
@@ -101,8 +152,51 @@ class Level {
         "                                                                nn    ",
         "   S                      o      _ _  _  _  _               n         ",
         "gggggggggwwwwwwwwwwgggggggggggggwwwwwwwwwwwwwwgggggggggggggggggggggggg",
-        "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
-        "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      ],
+      gridSize / 2,
+      gridSize / 2,
+      gridSize,
+      gridSize,
+    ];
+    this.backgroundTileSet = json.world?.backgroundTileSet ?? [
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                               r      ",
+        "                                                        nnnnnnnnnnnnn ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                              T       ",
+        "                                                                      ",
+        "                                                                      ",
+        "                                                                      ",
       ],
       gridSize / 2,
       gridSize / 2,
@@ -122,6 +216,14 @@ class Level {
 
     this.w = gridSize * this.tilew;
     this.h = gridSize * this.tileh;
+
+    this.backgroundTileMap = new Tiles(
+      this.backgroundTileSet[0],
+      this.backgroundTileSet[1],
+      this.backgroundTileSet[2],
+      this.backgroundTileSet[3],
+      this.backgroundTileSet[4],
+    );
 
     this.TileMap = new Tiles(
       this.tileSet[0],

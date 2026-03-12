@@ -1,20 +1,44 @@
 function displayLevelSelect() {
   let gridLength = 5;
   let gridHeight = 3;
-  let gridXOffset = 175;
-  let gridYOffset = 150;
+  let gridXOffset = 150;
+  let gridYOffset = 125;
 
-  let boxSize = 125;
+  let boxSize = 100;
+
+  push();
+  imageMode(CENTER);
+  titleScreenImg.resize(width, 0);
+  image(titleScreenImg, width / 2, height * 0.62);
+
   for (let r = 0; r < gridHeight; r++) {
     // for (let r = gridHeight; r > 0; r--) {
 
     for (let c = 0; c < gridLength; c++) {
-      push();
+      let loopLevelIndex = c + r * gridLength;
 
-      if (c + r * gridLength == levelData["levels"].length) {
+      if (loopLevelIndex == levelData["levels"].length) {
         fill("white");
       } else {
+        fill("darkgrey");
+      }
+      if (
+        mouseX >=
+          width / 2 + (c - floor(gridLength / 2)) * gridXOffset - boxSize / 2 &&
+        mouseX <=
+          width / 2 + (c - floor(gridLength / 2)) * gridXOffset + boxSize / 2 &&
+        mouseY >=
+          height * 0.6 +
+            (r - floor(gridHeight / 2)) * gridYOffset -
+            boxSize / 2 &&
+        mouseY <=
+          height * 0.6 + (r - floor(gridHeight / 2)) * gridYOffset + boxSize / 2
+      ) {
         fill("grey");
+        if (mouseIsPressed && loopLevelIndex == 0) {
+          sceneManager = "game";
+          initLevel();
+        }
       }
 
       rectMode(CENTER);
@@ -22,24 +46,37 @@ function displayLevelSelect() {
         width / 2 + (c - floor(gridLength / 2)) * gridXOffset,
         height * 0.6 + (r - floor(gridHeight / 2)) * gridYOffset,
         boxSize,
+        boxSize,
+        boxSize / 20,
       );
 
       fill("black");
       textAlign(CENTER);
+      textSize(24);
       text(
-        1 + c + r * gridLength,
+        1 + loopLevelIndex,
         width / 2 + (c - floor(gridLength / 2)) * gridXOffset,
         height * 0.6 +
           (r - floor(gridHeight / 2)) * gridYOffset +
           textSize() / 4,
       );
-      pop();
     }
   }
+  pop();
 }
 
 function mainDisplay() {
+  camera.off();
+  push();
+  imageMode(CENTER);
+  background1Img.resize(0, height);
+  background2Img.resize(0, height);
+  image(background1Img, width / 2, height / 2);
+  image(background2Img, width / 2, height / 2);
+  pop();
+
   camera.on();
+
   allSprites.draw();
   camera.off();
 
@@ -50,14 +87,69 @@ function mainDisplay() {
   }
 }
 
+let grassTileImg;
+let dirtTileImg;
+let waterTileImg;
+let treeBaseTileImg;
+let treeMidTileImg;
+let treeFullTileImg;
+
+let titleScreenImg;
+let background1Img;
+let background2Img;
+let background3Img;
+let postOfficeImg;
+let recipient1Img;
+let playerWalkAni;
+let playerIdleAni;
+let playerJumpImpulseAni;
+let kiwiSpriteSheet;
+
+function initAssetFiles() {
+  // let playerImg1 = loadImage("assets/kiwi_frame_1.webp");
+  // let playerImg2 = loadImage("assets/kiwi_frame_2.webp");
+  // let playerImg3 = loadImage("assets/kiwi_frame_3.webp");
+  // let playerImg4 = loadImage("assets/kiwi_frame_4.webp");
+  // let playerImg5 = loadImage("assets/kiwi_frame_5.webp");
+  // let playerImg6 = loadImage("assets/kiwi_frame_6.webp");
+
+  titleScreenImg = loadImage("assets/title_screen.png");
+
+  treeBaseTileImg = loadImage("assets/tree_base.png");
+  treeMidTileImg = loadImage("assets/tree_mid.png");
+  treeFullTileImg = loadImage("assets/tree_full.png");
+  grassTileImg = loadImage("assets/grass_tile.png");
+  dirtTileImg = loadImage("assets/dirt_tile.png");
+  waterTileImg = loadImage("assets/water_tile.webp");
+
+  background1Img = loadImage("assets/background_main.webp");
+  background2Img = loadImage("assets/background_overlay.webp");
+  postOfficeImg = loadImage("assets/mail_pickup.webp");
+  recipient1Img = loadImage("assets/bat_house.webp");
+  kiwiSpriteSheet = loadImage("assets/kiwi_spritesheet.png");
+
+  // playerWalkAni = new Ani(
+  //   playerImg2,
+  //   playerImg3,
+  //   playerImg4,
+  //   playerImg5,
+  //   playerImg6,
+  // );
+  // playerIdleAni = new Ani(playerImg1);
+  // playerJumpImpulseAni = new Ani(playerImg6);
+}
+
 function displayHUD() {
   if (currPackage != null) {
     timeWithPackage = round(world.realTime - packageBornTime, 2);
   }
 
+  push();
   textSize(24);
+  fill("white");
   text("Time: " + timeWithPackage, 20, 10 + textSize());
   text('Packages "lost": ' + packageBrokenCount, 20, 10 + textSize() * 2);
+  pop();
 }
 
 function levelComplete() {

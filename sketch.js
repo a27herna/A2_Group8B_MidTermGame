@@ -11,11 +11,11 @@ let timeWithPackage = 0;
 
 let allowPlayerInput = false;
 
-let devCamSkip = false;
+let devCamSkip = true;
 
 let instructionSkip = false;
 
-let sceneManager = "game";
+let sceneManager = "levelSelect";
 
 let cnv;
 
@@ -26,6 +26,7 @@ function preload() {
 
   levelData = loadJSON("levelData.json");
   console.log(levelData);
+  initAssetFiles();
 }
 
 function setup() {
@@ -37,15 +38,16 @@ function setup() {
   4. Camera
   */
 
-  cnv = createCanvas(1100, 700);
+  cnv = createCanvas(1150, 650);
   cnv.position((windowWidth - width) / 2, (windowHeight - height) / 2);
 
   // ALWAYS ESTABLISH WORLD GRAVITY
   world.gravity.y = 0;
   mainPlayer = new PlayerBase(width / 2, height / 2, 5);
+  backgroundTerrainDefinition();
   terrainDefinition();
 
-  initLevel();
+  // initLevel();
 }
 
 function update() {
@@ -105,6 +107,7 @@ function initLevel(index) {
   if (!index) {
     removeRealTimeObjects();
     currentLevel?.TileMap.delete();
+    currentLevel?.backgroundTileMap.delete();
 
     world.gravity.y = 10;
     currentLevel = null;

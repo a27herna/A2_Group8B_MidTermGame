@@ -9,14 +9,30 @@ class PlayerBase {
 
     let carryonLipHeight = 20;
 
-    this.mainBody = new Sprite(x, y, size, size, DYN);
+    this.mainBody = new Sprite(x, y, size, size * 1.2, DYN);
     this.mainBody.color = "orange";
     this.mainBody.rotationLock = true;
     this.mainBody.bounciness = 0;
     this.mainBody.friction = 0;
     this.mainBody.allowSleeping = false;
+    this.mainBody.debug = true;
 
     this.mainBody.layer = 1;
+    // this.mainBody.mass = 10;
+
+    this.mainBody.spriteSheet = kiwiSpriteSheet;
+    this.mainBody.anis.w = 1409;
+    this.mainBody.anis.h = 967;
+    this.mainBody.addAnis({
+      idle: { row: 0, frames: 1 },
+      walk: { row: 0, frames: 5 },
+      jumpImpulse: { col: 0, frames: 1, frameDelay: Infinity },
+    });
+    this.mainBody.anis.scale = 0.11;
+    this.mainBody.anis.offset.x = 250;
+    this.mainBody.anis.offset.y = -80;
+    this.mainBody.changeAni("idle");
+
     // this.mainBody.mass = 10;
 
     this.carryon = new Sprite(
@@ -41,6 +57,7 @@ class PlayerBase {
     );
     this.carryon.rotationLock = true;
     this.carryon.color = "Maroon";
+    // this.carryon.stroke = "Maroon";
     // this.carryon.friction = 0;
     // this.carryon.mass = 10;
 
@@ -99,6 +116,28 @@ class PlayerBase {
       }
     }
 
+    // if (this.mainBody.vel.y < 0) {
+    //   this.mainBody.changeAni("idle");
+    // }
+    // if (dx != 0) {
+    // } else {
+    // }
+
+    if (dx < 0) {
+      this.mainBody.scale.x = -1;
+      this.mainBody.changeAni("walk");
+    } else if (dx > 0) {
+      this.mainBody.scale.x = 1;
+      this.mainBody.changeAni("walk");
+    } else {
+      this.mainBody.changeAni("idle");
+    }
+
+    if (this.mainBody.vel.y < -2) {
+      this.mainBody.changeAni("jumpImpulse");
+    }
+
+    // this.mainBody.scale.x = ;
     this.mainBody.vel.x = dx * this.speed;
     this.mainBody.pos.x = constrain(
       this.mainBody.pos.x,
