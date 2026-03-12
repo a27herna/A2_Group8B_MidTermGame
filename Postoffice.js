@@ -41,6 +41,7 @@ function initPostoffice() {
   PostofficeObj.height = objHeight;
   PostofficeObj.physics = "NONE";
   PostofficeObj.layer = 0;
+  // PostofficeObj.debug = true;
 
   // PostofficeObj.draw = function() {
   //   push();

@@ -15,7 +15,7 @@ class PlayerBase {
     this.mainBody.bounciness = 0;
     this.mainBody.friction = 0;
     this.mainBody.allowSleeping = false;
-    this.mainBody.debug = true;
+    // this.mainBody.debug = true;
 
     this.mainBody.layer = 1;
     // this.mainBody.mass = 10;

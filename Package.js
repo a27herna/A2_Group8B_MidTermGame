@@ -41,7 +41,16 @@ function initPackageObj() {
   BrokenPackageObj.height = 30;
   BrokenPackageObj.draw = function () {
     push();
+    // noStroke();
     fill(200, 200, 255);
+    triangle(
+      -BrokenPackageObj.width / 4,
+      BrokenPackageObj.height / 2,
+      0,
+      0,
+      BrokenPackageObj.width / 4,
+      BrokenPackageObj.height / 2,
+    );
     triangle(
       -BrokenPackageObj.width / 2,
       BrokenPackageObj.height / 2,
@@ -50,9 +59,17 @@ function initPackageObj() {
       0,
       BrokenPackageObj.height / 2,
     );
+    triangle(
+      BrokenPackageObj.width / 2,
+      BrokenPackageObj.height / 2,
+      BrokenPackageObj.width / 4,
+      BrokenPackageObj.height / 4,
+      0,
+      BrokenPackageObj.height / 2,
+    );
     pop();
   };
-  BrokenPackageObj.debug = true;
+  // BrokenPackageObj.debug = true;
 
   BasicBox = new PackageObj.Group();
   BasicBox.shape = "box";

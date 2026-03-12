@@ -10,6 +10,7 @@ function initRecipientObj() {
   RecipientObj.physics = "NONE";
   RecipientObj.layer = 0;
   RecipientObj.color = "red";
+  // RecipientObj.debug = true;
 
   recipient1Img.resize(0, objHeight * 1.5);
   RecipientObj.image = recipient1Img;

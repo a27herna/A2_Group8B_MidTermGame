@@ -11,7 +11,7 @@ let timeWithPackage = 0;
 
 let allowPlayerInput = false;
 
-let devCamSkip = true;
+let devCamSkip = false;
 
 let instructionSkip = false;
 
