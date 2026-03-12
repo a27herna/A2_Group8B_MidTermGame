@@ -2,7 +2,7 @@ class PlayerBase {
   constructor(x, y, speed) {
     let size = 60;
     this.packageJumpStrength = 18;
-    this.baseJumpStrength = 8;
+    this.baseJumpStrength = 9;
     this.jumpStrength = this.baseJumpStrength;
 
     this.speed = speed;
