@@ -29,7 +29,7 @@ Describe how to use or play your project.
 > Click with the mouse to navigate on-screen menus.
 
 ---
-## teration Notes (Post-Playtest)
+## Iteration Notes (Post-Playtest)
 <!-- **** -->
 
 ---
