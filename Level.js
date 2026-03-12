@@ -76,11 +76,15 @@ function terrainDefinition() {
   lilypad.color = "SeaGreen";
   lilypad.tile = "_";
   lilypad.stroke = "SeaGreen";
+  lilypad.img = platformTileImg;
+  lilypad.img.scale = gridSize / platformTileImg.width;
 
   oneWayPlatform = new platform.Group();
   oneWayPlatform.physics = "NONE";
   oneWayPlatform.color = "teal";
   oneWayPlatform.tile = "n";
+  oneWayPlatform.img = platformTileImg;
+  oneWayPlatform.img.scale = gridSize / platformTileImg.width;
 
   VisualForegroundTile = new Group();
   VisualForegroundTile.physics = "NONE";

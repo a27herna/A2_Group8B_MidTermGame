@@ -87,6 +87,7 @@ function mainDisplay() {
   }
 }
 
+let platformTileImg;
 let grassTileImg;
 let dirtTileImg;
 let waterTileImg;
@@ -115,6 +116,7 @@ function initAssetFiles() {
 
   titleScreenImg = loadImage("assets/title_screen.png");
 
+  platformTileImg = loadImage("assets/platform_tile.png");
   treeBaseTileImg = loadImage("assets/tree_base.png");
   treeMidTileImg = loadImage("assets/tree_mid.png");
   treeFullTileImg = loadImage("assets/tree_full.png");
