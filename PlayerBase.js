@@ -54,7 +54,12 @@ class PlayerBase {
     this.wheeljoiner.springiness = 0.000000000000000000000000000000001;
     this.wheeljoiner.visible = false;
 
-    this.floorSensor = new Sprite(x, y + this.mainBody.hh, size, size * 0.25);
+    this.floorSensor = new Sprite(
+      x,
+      y + this.mainBody.hh,
+      size * 0.8,
+      size * 0.25,
+    );
     this.floorSensor.removeColliders();
     this.floorSensor.visible = false;
     this.floorSensor.mass = 0;

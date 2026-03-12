@@ -11,5 +11,5 @@ function getPlayerSaveData() {
 
 function saveToPlayerSaveData() {
   storeItem("playerSaveData", playerSaveDataTemp);
-  console.log(getItem("playerSaveData"));
+  // console.log(getItem("playerSaveData"));
 }
