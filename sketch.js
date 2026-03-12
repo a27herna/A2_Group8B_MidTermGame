@@ -37,7 +37,7 @@ function setup() {
   3. Level
   4. Camera
   */
- world.updateRate = 60;
+  world.updateRate = 60;
 
   cnv = createCanvas(1150, 650);
   cnv.position((windowWidth - width) / 2, (windowHeight - height) / 2);
@@ -67,17 +67,17 @@ function update() {
     }
   }
 
-  if (kb.presses("1")) {
-    console.log(mainPlayer.mainBody.pos.x);
-    console.log(mainPlayer.carryon.pos.x);
-    console.log(mainPlayer.wheeljoiner);
-  }
-  if (kb.presses("2")) {
-    console.log(mainPlayer.mainBody.vel.x);
-    console.log(mainPlayer.mainBody.vel.y);
-    console.log(mainPlayer.carryon.vel.x);
-    console.log(mainPlayer.carryon.vel.y);
-  }
+  // if (kb.presses("1")) {
+  //   console.log(mainPlayer.mainBody.pos.x);
+  //   console.log(mainPlayer.carryon.pos.x);
+  //   console.log(mainPlayer.wheeljoiner);
+  // }
+  // if (kb.presses("2")) {
+  //   console.log(mainPlayer.mainBody.vel.x);
+  //   console.log(mainPlayer.mainBody.vel.y);
+  //   console.log(mainPlayer.carryon.vel.x);
+  //   console.log(mainPlayer.carryon.vel.y);
+  // }
 }
 
 function keyPressed() {

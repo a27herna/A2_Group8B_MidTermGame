@@ -12,7 +12,6 @@ function displayLevelSelect() {
   image(titleScreenImg, width / 2, height * 0.62);
 
   for (let r = 0; r < gridHeight; r++) {
-
     for (let c = 0; c < gridLength; c++) {
       let loopLevelIndex = c + r * gridLength;
 
@@ -128,16 +127,6 @@ function initAssetFiles() {
   postOfficeImg = loadImage("assets/images/mail_pickup.webp");
   recipient1Img = loadImage("assets/images/bat_house.webp");
   kiwiSpriteSheet = loadImage("assets/images/kiwi_spritesheet.png");
-
-  // playerWalkAni = new Ani(
-  //   playerImg2,
-  //   playerImg3,
-  //   playerImg4,
-  //   playerImg5,
-  //   playerImg6,
-  // );
-  // playerIdleAni = new Ani(playerImg1);
-  // playerJumpImpulseAni = new Ani(playerImg6);
 }
 
 function displayHUD() {

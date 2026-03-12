@@ -82,8 +82,8 @@ function summonPackage() {
     );
 
     // console.log(this.packageList);
-    console.log(this.currPackageIndex);
-    console.log(this.packageList[this.currPackageIndex]);
+    // console.log(this.currPackageIndex);
+    // console.log(this.packageList[this.currPackageIndex]);
 
     currPackage = createPackageObj(this.packageList[this.currPackageIndex]);
 

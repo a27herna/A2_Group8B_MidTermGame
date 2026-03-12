@@ -56,8 +56,10 @@ Describe how to use or play your project.
 ## References
 Connect your in-text citations to the reference list along with additional sources that informed your design but were not directly cited. Provide all citations using the ACM reference format. 
 ### In-text
+> `[1]` p5js.org. Star - example | p5.js. p5js.org. Retrieved March 12, 2026 from https://archive.p5js.org/examples/form-star.html 
 
 ### Inspiration
-> `[1]` https://archive.p5js.org/examples/form-star.html 
-
+> Rodrigo Monteiro. 2012. Title. (May 2012). Retrieved March 12, 2026 from http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/
+> q5play.org. 2023. Platformer | p5play. Game [Web Browser]. (17 March 2023). q5play.org.
+> 
 ---
