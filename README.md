@@ -55,7 +55,9 @@ Describe how to use or play your project.
 ---
 ## References
 Connect your in-text citations to the reference list along with additional sources that informed your design but were not directly cited. Provide all citations using the ACM reference format. 
+### In-text
 
+### Inspiration
 > `[1]` https://archive.p5js.org/examples/form-star.html 
 
 ---
