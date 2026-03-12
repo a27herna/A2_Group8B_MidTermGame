@@ -12,7 +12,6 @@ function displayLevelSelect() {
   image(titleScreenImg, width / 2, height * 0.62);
 
   for (let r = 0; r < gridHeight; r++) {
-    // for (let r = gridHeight; r > 0; r--) {
 
     for (let c = 0; c < gridLength; c++) {
       let loopLevelIndex = c + r * gridLength;
@@ -114,21 +113,21 @@ function initAssetFiles() {
   // let playerImg5 = loadImage("assets/kiwi_frame_5.webp");
   // let playerImg6 = loadImage("assets/kiwi_frame_6.webp");
 
-  titleScreenImg = loadImage("assets/title_screen.png");
+  titleScreenImg = loadImage("assets/images/title_screen.png");
 
-  platformTileImg = loadImage("assets/platform_tile.png");
-  treeBaseTileImg = loadImage("assets/tree_base.png");
-  treeMidTileImg = loadImage("assets/tree_mid.png");
-  treeFullTileImg = loadImage("assets/tree_full.png");
-  grassTileImg = loadImage("assets/grass_tile.png");
-  dirtTileImg = loadImage("assets/dirt_tile.png");
-  waterTileImg = loadImage("assets/water_tile.webp");
+  platformTileImg = loadImage("assets/images/platform_tile.png");
+  treeBaseTileImg = loadImage("assets/images/tree_base.png");
+  treeMidTileImg = loadImage("assets/images/tree_mid.png");
+  treeFullTileImg = loadImage("assets/images/tree_full.png");
+  grassTileImg = loadImage("assets/images/grass_tile.png");
+  dirtTileImg = loadImage("assets/images/dirt_tile.png");
+  waterTileImg = loadImage("assets/images/water_tile.webp");
 
-  background1Img = loadImage("assets/background_main.webp");
-  background2Img = loadImage("assets/background_overlay.webp");
-  postOfficeImg = loadImage("assets/mail_pickup.webp");
-  recipient1Img = loadImage("assets/bat_house.webp");
-  kiwiSpriteSheet = loadImage("assets/kiwi_spritesheet.png");
+  background1Img = loadImage("assets/images/background_main.webp");
+  background2Img = loadImage("assets/images/background_overlay.webp");
+  postOfficeImg = loadImage("assets/images/mail_pickup.webp");
+  recipient1Img = loadImage("assets/images/bat_house.webp");
+  kiwiSpriteSheet = loadImage("assets/images/kiwi_spritesheet.png");
 
   // playerWalkAni = new Ani(
   //   playerImg2,
@@ -266,7 +265,6 @@ function drawLevelScore() {
     bestScore = currentTime;
   }
 
-  //   new Sprite(250, 80, [50, -72, 50, 144, 5]);
   let bestTimeMin = int(bestScore / 60);
 
   let bestTimeSec = int(bestScore);
@@ -305,6 +303,7 @@ function drawLevelScore() {
   );
 }
 
+// [1]
 function drawStar(x, y, radius1, radius2, npoints = 5) {
   push();
   angleMode(DEGREES);

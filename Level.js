@@ -55,7 +55,7 @@ function terrainDefinition() {
   ground.img = grassTileImg;
   ground.img.scale = gridSize / grassTileImg.width;
 
-  dirt = new floorTile.Group();
+  dirt = new ground.Group();
   dirt.physics = "static";
   dirt.layer = 0;
   dirt.width = gridSize;
