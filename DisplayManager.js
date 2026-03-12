@@ -149,6 +149,46 @@ function displayHUD() {
   fill("white");
   text("Time: " + timeWithPackage, 20, 10 + textSize());
   text('Packages "lost": ' + packageBrokenCount, 20, 10 + textSize() * 2);
+
+  stroke("Black");
+  strokeWeight(5);
+  fill("Sienna");
+  let restartButtonMargin = 60;
+  let restartButtonX = width - restartButtonMargin;
+  let restartButtonY = height - restartButtonMargin;
+  let restartButtonSize = 80;
+  circle(restartButtonX, restartButtonY, restartButtonSize);
+
+  angleMode(RADIANS);
+
+  strokeWeight(5);
+  strokeCap(SQUARE);
+  arc(
+    restartButtonX,
+    restartButtonY,
+    restartButtonSize * 0.5,
+    restartButtonSize * 0.5,
+    HALF_PI,
+    TWO_PI,
+  );
+
+  strokeCap(ROUND);
+  fill("black");
+  triangle(
+    restartButtonX,
+    restartButtonY + restartButtonSize / 2 / 2 - 10,
+    restartButtonX,
+    restartButtonY + restartButtonSize / 2 / 2 + 10,
+    restartButtonX + 15,
+    restartButtonY + restartButtonSize / 2 / 2,
+  );
+
+  // noStroke();
+  strokeWeight(5);
+  fill("white");
+  textAlign(CENTER, CENTER);
+  textSize(36);
+  text("R", restartButtonX, restartButtonY + 2);
   pop();
 }
 
