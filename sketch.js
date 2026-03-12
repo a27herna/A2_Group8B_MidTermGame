@@ -14,6 +14,9 @@ let allowPlayerInput = false;
 let devCamSkip = false;
 
 let instructionSkip = false;
+
+let sceneManager = "game";
+
 let cnv;
 
 let levelData;
@@ -51,12 +54,14 @@ function update() {
   // if (instructionSkip) {
   // }
 
-  currentLevel.updateTerrain();
-  packageWorldBound();
+  if (sceneManager == "game") {
+    currentLevel.updateTerrain();
+    packageWorldBound();
 
-  if (allowPlayerInput) {
-    mainPlayer.updatePlayer();
-    updateCamera();
+    if (allowPlayerInput) {
+      mainPlayer.updatePlayer();
+      updateCamera();
+    }
   }
 
   if (kb.presses("1")) {
@@ -83,9 +88,15 @@ function keyPressed() {
 }
 
 function drawFrame() {
+  allSprites.draw();
   background(220);
 
-  mainDisplay();
+  if (sceneManager == "levelSelect") {
+    displayLevelSelect();
+  } else if (sceneManager == "game") {
+    mainDisplay();
+  }
+
   // camera.on();
 }
 

@@ -1,5 +1,41 @@
 function displayLevelSelect() {
-  // temp
+  let gridLength = 5;
+  let gridHeight = 3;
+  let gridXOffset = 175;
+  let gridYOffset = 150;
+
+  let boxSize = 125;
+  for (let r = 0; r < gridHeight; r++) {
+    // for (let r = gridHeight; r > 0; r--) {
+
+    for (let c = 0; c < gridLength; c++) {
+      push();
+
+      if (c + r * gridLength == levelData["levels"].length) {
+        fill("white");
+      } else {
+        fill("grey");
+      }
+
+      rectMode(CENTER);
+      rect(
+        width / 2 + (c - floor(gridLength / 2)) * gridXOffset,
+        height * 0.6 + (r - floor(gridHeight / 2)) * gridYOffset,
+        boxSize,
+      );
+
+      fill("black");
+      textAlign(CENTER);
+      text(
+        1 + c + r * gridLength,
+        width / 2 + (c - floor(gridLength / 2)) * gridXOffset,
+        height * 0.6 +
+          (r - floor(gridHeight / 2)) * gridYOffset +
+          textSize() / 4,
+      );
+      pop();
+    }
+  }
 }
 
 function mainDisplay() {
