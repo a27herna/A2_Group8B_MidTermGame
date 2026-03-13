@@ -292,7 +292,6 @@ function drawLevelScore() {
   );
 }
 
-// [1]
 function drawStar(x, y, radius1, radius2, npoints = 5) {
   push();
   angleMode(DEGREES);
@@ -313,4 +312,4 @@ function drawStar(x, y, radius1, radius2, npoints = 5) {
   endShape(CLOSE);
   pop();
 }
-// !!!! Above code taken from and modified: https://archive.p5js.org/examples/form-star.html !!!!
+// [1]
