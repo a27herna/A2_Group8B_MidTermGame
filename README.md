@@ -33,7 +33,7 @@ Group 8B
 
 ## Iteration Notes (Post-Playtest)
 
-###Summary of findings
+### Summary of findings
 
 Players found most confusion when it came to package pickup and drop-off. There was uncertainty regarding where the pickup area was, and what button to press to receive a new package. Players were unsure what to do if a package broke. Instead of going back to the pickup area like we had planned, they asked if they could restart. Players found it tedious having to walk back to the package pickup area try again.
 
@@ -41,7 +41,7 @@ Movement in general was picked up quite fast. Packages broke most often when the
 
 Players were quite entertained by the package physics, creating a social experience where they often laughed or shouted whenever the package would go up in the air or break. They'd also start challenging each other to try to find out how to complete the level as fast as possible, creating a competitive incentive to replay the level.
 
-###Concrete changes
+### Concrete changes
 
     1. We plan on implementing a reset button, allowing players to retry a level instantly. To make players aware of this feature, we will add text in the top left corner naming it and its key bind.
 
@@ -53,11 +53,11 @@ Players were quite entertained by the package physics, creating a social experie
 
 ## Iteration Notes (Post-Showcase)
 
-###Summary of findings
+### Summary of findings
 
 Players found the tutorial level to be too difficult. They were confused how they were supposed to pick up a package, skipping over the post office and proceeding to the delivery location. When told they had to pick up a package, they did not know what button to press to receive a package. They kept pressing the button, receiving multiple packages, not knowing they were supposed to carry them one at a time. Players were confused by the star scoring system and were unsure what the numbers within the stars meant. Players become apprehensive when the package breaks, only making the game harder.
 
-###Concrete changes
+### Concrete changes
 
     1. To clarify objectives (the package pickup and delivery areas), we will add dynamic arrows to point to their locations. If the player does not have a package, it will point to the package pickup location. If the player does have a package, it will point to the delivery area.
 
