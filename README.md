@@ -61,7 +61,7 @@ Players found the tutorial level to be too difficult. They were confused how the
 
     1. To clarify objectives (the package pickup and delivery areas), we will add dynamic arrows to point to their locations. If the player does not have a package, it will point to the package pickup location. If the player does have a package, it will point to the delivery area.
 
-    2. To make it clearer how to interact with the package pickup and delivery areas, we will add a visual key bind popup when players are near eithers’ hitboxes (hover-over instructions.
+    2. To make it clearer how to interact with the package pickup and delivery areas, we will add a visual key bind popup when players are near eithers’ hitboxes (hover-over instructions).
 
     3. Disable the ability to pick up packages if one is already in play.
 
